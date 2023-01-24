@@ -31,8 +31,18 @@
         ban = ''
 	}
 
-</script>
+    let selectPage = true;
+    let detailPage = false;
+    function recommendClick(){
+        requestLocation,requestStep,bans
+        //fetch호출 후 랜더링
+        selectPage = !selectPage;
+        detailPage = !detailPage;
+      }
 
+      let Atiers = ['ayame', 'soonie', 'aira', 'renee', 'nicole'];
+</script>
+{#if selectPage}
     <div class="flex justify-center px-4 py-16 border-t border-base-300">
         <div class="flex flex-col w-300">
         <div class="form-control w-300 max-w-xs">
@@ -75,6 +85,100 @@
               </label>
           </div>
           <div class="divider"></div>
-          <a href="/stage-answer"><button class="btn">추천조합 보기</button></a>
+          <button class="btn" on:click={recommendClick}>추천조합 보기</button>
     </div>
 </div>
+{/if}
+<!-- 
+{#if detailPage}
+<div class="flex justify-center px-4 py-16 border-t border-base-300">
+    <div class="flex flex-col w-300">
+
+        <div class="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box">
+            <div class="carousel-item">
+              {#each Atiers as value} 
+                <div class="avatar indicator">
+                <span class="indicator-item badge badge-neutral-focus">{value}</span> 
+                <div class="w-20 h-20 rounded-lg">
+                <img src="https://eversoul.kakaogames.com/static/character/{value}/img-thumb.png">
+                </div>
+                </div>
+            {/each}
+            </div>
+          </div>
+          <div class="divider"></div>
+          <p>레벨: 100, 101, 102, 104, 120</p>
+          <p>전투력: 11111</p>
+          <p>포지션: 기본</p>
+          <p>정보: 이렇게하셈</p>
+
+      <div class="divider"></div>
+      <button class="btn" on:click={recommendClick}>다시 고르기</button>
+    </div>
+</div>
+{/if} -->
+
+
+<!-- 기본진형 -->
+{#if detailPage}
+<div class="flex justify-center px-4 py-16 border-t border-base-300">
+    <div class="flex flex-col w-300">
+
+        <div class="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box">
+            <div class="carousel-item">
+
+                <!-- 후열 세로묶음 -->
+            <div class="flex flex-col w-full border-opacity-50 p-6">
+
+                <div class="avatar indicator">
+                    <span class="indicator-item badge badge-neutral-focus">{Atiers[2]}</span> 
+                <div class="w-20 h-20 rounded-lg">
+                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[2]}/img-thumb.png">
+                </div>
+                </div>
+
+                <div class="avatar indicator">
+                    <span class="indicator-item badge badge-neutral-focus">{Atiers[3]}</span> 
+                <div class="w-20 h-20 rounded-lg">
+                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[3]}/img-thumb.png">
+                </div>
+                </div>
+
+                <div class="avatar indicator">
+                    <span class="indicator-item badge badge-neutral-focus">{Atiers[4]}</span> 
+                <div class="w-20 h-20 rounded-lg">
+                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[4]}/img-thumb.png">
+                </div>
+                </div>
+
+            </div>
+
+            <!-- 전열 세로묶음 -->
+            <div class="flex flex-col w-full border-opacity-50" style="margin-top: 7vh;">
+                <div class="avatar indicator">
+                    <span class="indicator-item badge badge-neutral-focus">{Atiers[0]}</span> 
+                <div class="w-20 h-20 rounded-lg">
+                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[0]}/img-thumb.png">
+                </div>
+                </div>
+
+                <div class="avatar indicator">
+                    <span class="indicator-item badge badge-neutral-focus">{Atiers[1]}</span> 
+                <div class="w-20 h-20 rounded-lg">
+                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[1]}/img-thumb.png">
+                </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="divider"></div>
+          <p>포지션: 기본</p>
+          <p>전투력: 11111</p>
+          <p style="max-width: 40vh;">정보: 이렇게하셈 메피죽으면 리트하고 구절구절 구절구절 구절구절 이렇게 저렇게</p>
+
+      <div class="divider"></div>
+      <button class="btn" on:click={recommendClick}>다시 고르기</button>
+    </div>
+</div>
+{/if}
