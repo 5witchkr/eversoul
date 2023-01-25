@@ -1,4 +1,24 @@
 <script>
+  import { each } from "svelte/internal";
+
+
+async function getTactic(){
+        // 원격지 데이터를 fetch로 가져오기
+        let requestLocation = requestLocations.split(" ")[0];
+        let requestStep = requestSteps.split(" ")[0];
+        let requestBans = bans.split(" ");
+        const res = await fetch(`https://pickban.duckdns.org/api/stagetactic/${requestLocation}/${requestStep}?bans=${requestBans}`); 
+        const json = await res.json(); // fetch 결과를 JSON 객체로 변환
+        return json;                   // JSON 객체 반환
+    }
+    let tacticsCall = getTactic(); 
+
+        // mockdata for indexsing soulname
+        let soulIndex = [ '','adrianne','catherine', 'talia','jacqueline',
+     'petra', 'violette','jiho','mephistopeles', 'vivienne', 'linzy',
+      'naiah', 'claire', 'chloe','dora', 'miriam', 'prim', 'cherrie',
+       'mica', 'rebecca', 'seeha', 'clara', 'haru', 'flynn', 'nini',
+        'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade'];
 
     let locations = [
         "엘나스", "아케나인", "콜브 초원",
@@ -17,9 +37,10 @@
     let ban;
 
     //api call values
-    let requestLocation;
-    let requestStep;
-	let bans = [];
+    let requestLocations;
+    let requestSteps;
+
+	let bans = " ";
 
 	// $: if (count >= 10) {
 	// 	alert(`count is dangerously high!`);
@@ -28,7 +49,7 @@
 
 	function handleClick() {
 		bans += ban+" ";
-        ban = ''
+    ban = ''
 	}
 
     let selectPage = true;
@@ -38,10 +59,21 @@
     let detailPage4 = false;
 
     function recommendClick(){
-        requestLocation,requestStep,bans
         //fetch호출 후 랜더링
-        selectPage = !selectPage;
+        if(selectPage) {
+          selectPage = !selectPage;
+          detailPage4 = !detailPage4;
+          return;
+        }
         detailPage4 = !detailPage4;
+        detailPage1 = !detailPage1;
+      }
+      function retryClick(){
+        selectPage = true;
+        detailPage1 = false;
+        detailPage2 = false;
+        detailPage3 = false;
+        detailPage4 = false;
       }
 
       let Atiers = ['ayame', 'soonie', 'aira', 'renee', 'nicole'];
@@ -55,7 +87,7 @@
               <span class="label-text">지역을 고르세요</span>
               <span class="label-text-alt">Location</span>
             </label>
-            <select class="select select-bordered" bind:value={requestLocation}>
+            <select class="select select-bordered" bind:value={requestLocations}>
               <option disabled selected>Pick Location</option>
               {#each locations as location, idx}  <!-- 반복 횟수 변수 idx 선언 -->
               <option>{idx+1} 지역 {location}</option>   <!-- 배열의 요소를 li로 출력 -->
@@ -68,7 +100,7 @@
               <span class="label-text">단계를 고르세요</span>
               <span class="label-text-alt">Step</span>
             </label>
-            <select class="select select-bordered"  bind:value={requestStep}>
+            <select class="select select-bordered"  bind:value={requestSteps}>
               <option disabled selected>Pick Step</option>
               {#each steps as step}  <!-- 반복 횟수 변수 idx 선언 -->
               <option>{step} 단계</option>   <!-- 배열의 요소를 li로 출력 -->
@@ -90,11 +122,32 @@
               </label>
           </div>
           <div class="divider"></div>
-          <button class="btn" on:click={recommendClick}>추천조합 보기</button>
+          <label for="my-modal-3" class="btn" on:click={() => tacticsCall = getTactic()}>공략 찾아보기</label>
     </div>
 </div>
 {/if}
+
+
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal-3" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box relative">
+    <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <h3 class="text-lg font-bold">원하는 공략을 고르세요</h3>
+    <a>공략이 없을경우에는 보이지 않습니다.</a>
+    <ul class="menu bg-base-100 w-80 p-2 rounded-box">
+      {#await tacticsCall}
+      {:then tactics} <!-- 정상 종료 후 처리 -->
+      {#each tactics as value} 
+      <li><button class="btn" on:click={recommendClick}>전투력 {value.power} 추천도 100</button></li>
+      {/each}
+      {/await}
+    </ul>
+  </div>
+</div>
 <!-- 
+
+
 {#if detailPage}
 <div class="flex justify-center px-4 py-16 border-t border-base-300">
     <div class="flex flex-col w-300">
@@ -180,10 +233,13 @@
           <div class="divider"></div>
           <p>포지션: 기본</p>
           <p>전투력: 11111</p>
-          <p style="max-width: 40vh;">정보: 이렇게하셈 메피죽으면 1235235235235253게 저렇게</p>
+          <a style="max-width: 40vh; text-decoration: underline;">
+            정보: 이렇게하셈 메피죽으면 리스트,
+            작성자: ㅇㅇ
+            원본사이트: https://gall.dcinside.com/mgallery/board/view/?id=eversoul&no=66214&exception_mode=recommend&page=1</a>
 
       <div class="divider"></div>
-      <button class="btn" on:click={recommendClick}>다시 고르기</button>
+      <button class="btn" on:click={retryClick}>다시 고르기</button>
     </div>
 </div>
 {/if}
@@ -247,7 +303,7 @@
           <p style="max-width: 40vh;">정보: 이렇게하셈 메피죽으면 리123423145123512355235 이렇게 저렇게</p>
 
       <div class="divider"></div>
-      <button class="btn" on:click={recommendClick}>다시 고르기</button>
+      <button class="btn" on:click={retryClick}>다시 고르기</button>
     </div>
 </div>
 {/if}
@@ -311,7 +367,7 @@
           <p style="max-width: 40vh;">정보: 이렇게하셈 메피죽으면 리123423145123512355235 이렇게 저렇게</p>
 
       <div class="divider"></div>
-      <button class="btn" on:click={recommendClick}>다시 고르기</button>
+      <button class="btn" on:click={retryClick}>다시 고르기</button>
     </div>
 </div>
 {/if}
@@ -356,7 +412,7 @@
             </div>
 
               <!-- 전열 세로묶음 -->
-            <div class="flex flex-col w-full border-opacity-50" style="margin-top: 17vh;">
+            <div class="flex flex-col w-full border-opacity-50" style="margin-top: 15vh;">
           
               <div class="avatar indicator">
                   <span class="indicator-item badge badge-neutral-focus">{Atiers[0]}</span> 
@@ -375,7 +431,7 @@
           <p style="max-width: 40vh;">정보: 이렇게하셈 메피죽으면 리123423145123512355235 이렇게 저렇게</p>
 
       <div class="divider"></div>
-      <button class="btn" on:click={recommendClick}>다시 고르기</button>
+      <button class="btn" on:click={retryClick}>다시 고르기</button>
     </div>
 </div>
 {/if}

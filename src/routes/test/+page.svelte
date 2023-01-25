@@ -2,7 +2,7 @@
     // async 함수 정의
     async function getPosts(){
         // 원격지 데이터를 fetch로 가져오기
-        const res = await fetch({url}); 
+        const res = await fetch('https://pickban.duckdns.org/api/soulcharacter/tier?tier=SSS'); 
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json;                   // JSON 객체 반환
     }
@@ -30,8 +30,8 @@
         {:then posts} <!-- 정상 종료 후 처리 -->
             {#each posts as post} <!-- fetch 결과의 데이터 개수만큼 반복 실행 -->
                 <tr> <!-- tr, td 엘리먼트로 출력 -->
-                    <td>{post.championTier}</td>
-                    <td>{post.championId}</td>
+                    <td>{post.name}</td>
+                    <td>{post.tier}</td>
                 </tr>
             {/each}
         {/await}        
