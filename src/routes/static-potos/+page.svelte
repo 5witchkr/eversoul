@@ -1,4 +1,4 @@
-<img alt="지호" src="https://eversoul.kakaogames.com/static/character/jiho/img-thumb.png" class="loaded">
+<!-- <img alt="지호" src="https://eversoul.kakaogames.com/static/character/jiho/img-thumb.png" class="loaded">
 <img alt="제이드" src="https://eversoul.kakaogames.com/static/character/jade/img-thumb.png" class="loaded">
 <img alt="메피스토펠레스" src="https://eversoul.kakaogames.com/static/character/mephistopeles/img-thumb.png" class="loaded">
 <img alt="린지" src="https://eversoul.kakaogames.com/static/character/linzy/img-thumb.png" class="loaded">
@@ -28,4 +28,4 @@
 <img alt="레베카" src="https://eversoul.kakaogames.com/static/character/rebecca/img-thumb.png" class="loaded">
 <img alt="비올레트" src="https://eversoul.kakaogames.com/static/character/violette/img-thumb.png" class="loaded">
 <img alt="아드리안" src="https://eversoul.kakaogames.com/static/character/adrianne/img-thumb.png" class="loaded">
-<img alt="아야메" src="https://eversoul.kakaogames.com/static/character/ayame/img-thumb.png" class="loaded">
+<img alt="아야메" src="https://eversoul.kakaogames.com/static/character/ayame/img-thumb.png" class="loaded"> -->
