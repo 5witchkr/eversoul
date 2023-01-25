@@ -1,5 +1,6 @@
 <script>
 
+
 async function createPost() {
 		const res = await fetch(`https://pickban.duckdns.org/api/stagetactic/tactic`, {
             headers:{'Content-Type':'application/json'},
@@ -14,11 +15,14 @@ async function createPost() {
         soulCharacters: requestSoulsWithLevel
 		})
 		})
-        const loginStatus = await res.status;
-        if (loginStatus == 201) {
+        const postStatus = await res.status;
+        if (postStatus == 201) {    
+            successCall = true;
+        } else{
+        alert("입력값을 확인해주세요.");
     }
 	}
-
+    let successCall = false;
 
         let locations = [
         "엘나스", "아케나인", "콜브 초원",
@@ -76,7 +80,7 @@ async function createPost() {
         }
 </script>
 
-
+{#if !successCall}
 <div class="flex justify-center px-4 py-16 border-t border-base-300">
     <div class="flex flex-col w-300">
     <div class="form-control w-300 max-w-xs">
@@ -169,3 +173,17 @@ async function createPost() {
             공략글 작성 완료</button>
 </div>
 </div>
+{/if}
+
+
+{#if successCall}
+<div class="hero min-h-screen bg-base-200">
+    <div class="hero-content text-center">
+      <div class="max-w-md">
+        <h1 class="text-5xl font-bold">공략 작성 성공!</h1>
+        <p class="py-6">스테이지 공략의 공유 및 기여를 해주셔서 정말 감사합니다!</p>
+        <a href="/stage"><button class="btn btn-primary">확인</button></a>
+      </div>
+    </div>
+  </div>
+{/if}
