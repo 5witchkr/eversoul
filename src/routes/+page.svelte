@@ -6,7 +6,7 @@
           <div class="hero-content text-center text-neutral-content">
             <div class="max-w-md">
               <h1 class="mb-5 text-5xl font-bold"></h1>
-              <div class="mb-20">에버소울 스테이지 공략, 정령 티어정보 인연스토리 공략(예정) 사이트입니다.</div>
+              <div class="mb-5">에버소울 스테이지 공략, 정령 티어정보 인연스토리 공략(예정) 사이트입니다.</div>
             </div>
           </div>
         </div>
