@@ -3,7 +3,8 @@
     let name;
     name = 'jiho'
 
-    let SSStiers = [ 'adrianne','catherine', 'talia', 'jacqueline', 'petra', 'violette'];
+    let data
+
     let SStiers = ['jiho','mephistopeles', 'vivienne', 'linzy', 'naiah', 'claire', 'chloe'];
     let Stiers = ['dora', 'miriam', 'prim', 'cherrie', 'mica', 'rebecca', 'seeha', 'clara', 'haru', 'flynn', 'nini', 'erusha'];
     let Atiers = ['ayame', 'soonie', 'aira', 'renee', 'nicole'];
@@ -24,11 +25,11 @@
     </div>
   </div>
 <div class="divider"></div> 
-{#each SSStiers as value}  <!-- 반복 횟수 변수 idx 선언 -->
+{#each data[0] as value}  <!-- 반복 횟수 변수 idx 선언 -->
 <div class="avatar indicator">
-    <span class="indicator-item badge badge-secondary">{value}</span> 
+    <span class="indicator-item badge badge-secondary">{value.name}</span> 
     <div class="w-20 h-20 rounded-lg">
-        <img src="https://eversoul.kakaogames.com/static/character/{value}/img-thumb.png">
+        <img src="https://eversoul.kakaogames.com/static/character/{value.name}/img-thumb.png">
     </div>
   </div>
 {/each}
