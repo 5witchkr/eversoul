@@ -25,7 +25,7 @@
     </div>
   </div>
 <div class="divider"></div> 
-{#each data[0] as value}  <!-- 반복 횟수 변수 idx 선언 -->
+{#each data as value}  <!-- 반복 횟수 변수 idx 선언 -->
 <div class="avatar indicator">
     <span class="indicator-item badge badge-secondary">{value.name}</span> 
     <div class="w-20 h-20 rounded-lg">
