@@ -17,7 +17,7 @@ async function getTactic(){
         let soulIndex = [ '','adrianne','catherine', 'talia','jacqueline',
      'petra', 'violette','jiho','mephistopeles', 'vivienne', 'linzy',
       'naiah', 'claire', 'chloe','dora', 'miriam', 'prim', 'cherrie',
-       'mica', 'rebecca', 'seeha', 'clara', 'haru', 'flynn', 'nini',
+       'mica','seeha','rebecca', 'clara', 'haru', 'flynn', 'nini',
         'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade'];
 
     let locations = [
