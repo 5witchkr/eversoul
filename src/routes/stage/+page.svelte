@@ -1,6 +1,4 @@
 <script>
-  import { each } from "svelte/internal";
-
 
 async function getTactic(){
         // 원격지 데이터를 fetch로 가져오기
@@ -61,17 +59,6 @@ async function getTactic(){
     let detailPage2 = false;
     let detailPage3 = false;
     let detailPage4 = false;
-
-    function recommendClick(){
-        //fetch호출 후 랜더링
-        if(selectPage) {
-          selectPage = !selectPage;
-          detailPage4 = !detailPage4;
-          return;
-        }
-        detailPage4 = !detailPage4;
-        detailPage1 = !detailPage1;
-      }
 
       const viewRecommendClick = (positonValue) =>{
         //fetch호출 후 랜더링
@@ -149,13 +136,23 @@ async function getTactic(){
               </button>
             </div>
             <label class="label">
-                <span class="label-text">제외된 정령: {bans}</span>
-                <svg on:click={resetBanClick} class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
+                <span class="label-text">제외된 정령</span>
+                <button on:click={resetBanClick} >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                </button>
               </label>
+              <textarea class="textarea" placeholder="Bio" disabled>
+                {bans}</textarea>
+        
               
           </div>
           <div class="divider"></div>
           <label for="my-modal-3" class="btn" on:click={() => tacticsCall = getTactic()}>공략 찾아보기</label>
+          <div class="divider"></div>
+          <a href="/stage-post">
+            <button class="btn btn-block">
+                공략글 작성하러 가기
+          </a>
     </div>
 </div>
 {/if}

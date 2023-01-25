@@ -44,7 +44,8 @@
 <div class="modal">
   <div class="modal-box">
     <h3 class="font-bold text-lg">피드백은 언제나 환영!</h3>
-    <p class="py-4">개선사항이나 요구사항이 있으면 알려주세요!</p>
+    <p class="py-4">개선사항이나 요구사항이 있으면 언제든 알려주세요!</p>
+    <p class="py-4">Gmail: 5witchkrmailer@gmail.com</p>
     <div class="modal-action">
       <label for="my-modal2" class="btn">확인</label>
     </div>

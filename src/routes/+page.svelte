@@ -10,7 +10,7 @@
 
       <div class="max-w-md ">
         <h1 class="text-3xl font-bold">스테이지 공략</h1>
-        <p class="py-6">각 지역별로 정령과 포메이션을 추천해드립니다</p>
+        <p class="py-6">각 지역별 추천 정령과 포메이션을 확인해보세요.</p>
         <a href="/stage">
           <button class="btn btn-primary">바로가기</button>
       </a>
