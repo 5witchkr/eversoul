@@ -17,7 +17,7 @@ async function getTactic(){
         let soulIndex = [ '','adrianne','catherine', 'talia','jacqueline',
      'petra', 'violette','jiho','mephistopeles', 'vivienne', 'linzy',
       'naiah', 'claire', 'chloe','dora', 'miriam', 'prim', 'cherrie',
-       'mica', 'rebecca', 'seeha', 'clara', 'haru', 'flynn', 'nini',
+       'mica','seeha','rebecca', 'clara', 'haru', 'flynn', 'nini',
         'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade'];
 
     let locations = [
@@ -47,8 +47,12 @@ async function getTactic(){
 	// 	count = 9;
 	// }
 
-	function handleClick() {
+	function addBanClick() {
 		bans += ban+" ";
+    ban = ''
+	}
+  function resetBanClick() {
+		bans = " ";
     ban = ''
 	}
 
@@ -68,15 +72,42 @@ async function getTactic(){
         detailPage4 = !detailPage4;
         detailPage1 = !detailPage1;
       }
-      function retryClick(){
-        selectPage = true;
+
+      const viewRecommendClick = (positonValue) =>{
+        //fetch호출 후 랜더링
+        if(selectPage) {
+          selectPage = !selectPage;
+        }
+        if(positonValue==="기본"){
+          detailPageAllOff();
+          detailPage1 = !detailPage1
+        }
+        if(positonValue==="수비"){
+          detailPageAllOff();
+          detailPage2 = !detailPage2
+        }
+        if(positonValue==="돌격"){
+          detailPageAllOff();
+          detailPage3 = !detailPage3
+        }
+        if(positonValue==="저격"){
+          detailPageAllOff();
+          detailPage4 = !detailPage4
+        }
+      }
+
+      function detailPageAllOff(){
         detailPage1 = false;
         detailPage2 = false;
         detailPage3 = false;
         detailPage4 = false;
       }
 
-      let Atiers = ['ayame', 'soonie', 'aira', 'renee', 'nicole'];
+      function retryClick(){
+        detailPageAllOff()
+        selectPage = true;
+      }
+
 
 </script>
 {#if selectPage}
@@ -113,13 +144,15 @@ async function getTactic(){
           <div class="form-control">
             <div class="input-group">
               <input type="text" bind:value={ban} placeholder="제외하기.." class="input input-bordered" />
-              <button class="btn btn-square" on:click={handleClick}>
+              <button class="btn btn-square" on:click={addBanClick}>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
               </button>
             </div>
             <label class="label">
                 <span class="label-text">제외된 정령: {bans}</span>
+                <svg on:click={resetBanClick} class="swap-on fill-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 512 512"><polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49"/></svg>
               </label>
+              
           </div>
           <div class="divider"></div>
           <label for="my-modal-3" class="btn" on:click={() => tacticsCall = getTactic()}>공략 찾아보기</label>
@@ -134,49 +167,34 @@ async function getTactic(){
   <div class="modal-box relative">
     <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
     <h3 class="text-lg font-bold">원하는 공략을 고르세요</h3>
-    <a>공략이 없을경우에는 보이지 않습니다.</a>
+    <a>(등록된 공략이 없을경우에는 보이지 않습니다).</a>
     <ul class="menu bg-base-100 w-80 p-2 rounded-box">
       {#await tacticsCall}
       {:then tactics} <!-- 정상 종료 후 처리 -->
-      {#each tactics as value} 
-      <li><button class="btn" on:click={recommendClick}>전투력 {value.power} 추천도 100</button></li>
+      {#each tactics as valueeee} 
+      {#if valueeee.position == "기본"}
+      <li><button class="btn" on:click={() => viewRecommendClick("기본")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      {/if}
+      {#if valueeee.position == "수비"}
+      <li><button class="btn" on:click={() => viewRecommendClick("수비")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      {/if}
+      {#if valueeee.position == "돌격"}
+      <li><button class="btn" on:click={() => viewRecommendClick("돌격")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      {/if}
+      {#if valueeee.position == "저격"}
+      <li><button class="btn" on:click={() => viewRecommendClick("저격")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      {/if}
       {/each}
+      
       {/await}
     </ul>
   </div>
 </div>
-<!-- 
 
-
-{#if detailPage}
-<div class="flex justify-center px-4 py-16 border-t border-base-300">
-    <div class="flex flex-col w-300">
-
-        <div class="carousel carousel-center max-w-md p-4 space-x-4 bg-neutral rounded-box">
-            <div class="carousel-item">
-              {#each Atiers as value} 
-                <div class="avatar indicator">
-                <span class="indicator-item badge badge-neutral-focus">{value}</span> 
-                <div class="w-20 h-20 rounded-lg">
-                <img src="https://eversoul.kakaogames.com/static/character/{value}/img-thumb.png">
-                </div>
-                </div>
-            {/each}
-            </div>
-          </div>
-          <div class="divider"></div>
-          <p>레벨: 100, 101, 102, 104, 120</p>
-          <p>전투력: 11111</p>
-          <p>포지션: 기본</p>
-          <p>정보: 이렇게하셈</p>
-
-      <div class="divider"></div>
-      <button class="btn" on:click={recommendClick}>다시 고르기</button>
-    </div>
-</div>
-{/if} -->
-
-
+{#await tacticsCall}
+{:then tactics} <!-- 정상 종료 후 처리 -->
+{#each tactics as valueeee} 
+{#if valueeee.position == "기본"}
 <!-- 기본진형 -->
 {#if detailPage1}
 <div class="flex justify-center px-4 py-16 border-t border-base-300">
@@ -189,23 +207,23 @@ async function getTactic(){
             <div class="flex flex-col w-full border-opacity-50 p-6">
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[2]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[2].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[2]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[2].id]}/img-thumb.png">
                 </div>
                 </div>
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[3]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[3].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[3]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[3].id]}/img-thumb.png">
                 </div>
                 </div>
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[4]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[4].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[4]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[4].id]}/img-thumb.png">
                 </div>
                 </div>
 
@@ -214,16 +232,16 @@ async function getTactic(){
             <!-- 전열 세로묶음 -->
             <div class="flex flex-col w-full border-opacity-50" style="margin-top: 7vh;">
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[0]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[0].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[0]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[0].id]}/img-thumb.png">
                 </div>
                 </div>
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[1]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[1].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[1]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[1].id]}/img-thumb.png">
                 </div>
                 </div>
               </div>
@@ -231,19 +249,20 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>포지션: 기본</p>
-          <p>전투력: 11111</p>
+          <p>포지션: {valueeee.position}</p>
+          <p>전투력: {valueeee.power}</p>
           <a style="max-width: 40vh; text-decoration: underline;">
-            정보: 이렇게하셈 메피죽으면 리스트,
-            작성자: ㅇㅇ
-            원본사이트: https://gall.dcinside.com/mgallery/board/view/?id=eversoul&no=66214&exception_mode=recommend&page=1</a>
-
+            정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
     </div>
 </div>
 {/if}
+{/if}
 
+
+
+{#if valueeee.position == "수비"}
 <!-- 수비진형 -->
 {#if detailPage2}
 <div class="flex justify-center px-4 py-16 border-t border-base-300">
@@ -256,16 +275,16 @@ async function getTactic(){
               <!-- 후열 세로묶음 -->
             <div class="flex flex-col w-full border-opacity-50" style="margin-top: 7vh;">
               <div class="avatar indicator">
-                  <span class="indicator-item badge badge-neutral-focus">{Atiers[3]}</span> 
+                  <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[3].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{Atiers[3]}/img-thumb.png">
+                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[3].id]}/img-thumb.png">
               </div>
               </div>
 
               <div class="avatar indicator">
-                  <span class="indicator-item badge badge-neutral-focus">{Atiers[4]}</span> 
+                  <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[4].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{Atiers[4]}/img-thumb.png">
+                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[4].id]}/img-thumb.png">
               </div>
               </div>
             </div>
@@ -274,23 +293,23 @@ async function getTactic(){
             <div class="flex flex-col w-full border-opacity-50 p-6">
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[0]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[0].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[0]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[0].id]}/img-thumb.png">
                 </div>
                 </div>
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[1]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[1].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[1]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[1].id]}/img-thumb.png">
                 </div>
                 </div>
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[2]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[2].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[2]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[2].id]}/img-thumb.png">
                 </div>
                 </div>
 
@@ -298,16 +317,20 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>포지션: 수비</p>
-          <p>전투력: 11111</p>
-          <p style="max-width: 40vh;">정보: 이렇게하셈 메피죽으면 리123423145123512355235 이렇게 저렇게</p>
-
+          <p>포지션: {valueeee.position}</p>
+          <p>전투력: {valueeee.power}</p>
+          <a style="max-width: 40vh; text-decoration: underline;">
+            정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
     </div>
 </div>
 {/if}
+{/if}
 
+
+
+{#if valueeee.position == "돌격"}
 <!-- 돌격진형 -->
 {#if detailPage3}
 <div class="flex justify-center px-4 py-16 border-t border-base-300">
@@ -321,9 +344,9 @@ async function getTactic(){
             <div class="flex flex-col w-full border-opacity-50" style="margin-top: 17vh;">
           
               <div class="avatar indicator">
-                  <span class="indicator-item badge badge-neutral-focus">{Atiers[4]}</span> 
+                  <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[4].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{Atiers[4]}/img-thumb.png">
+                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[4].id]}/img-thumb.png">
               </div>
               </div>
             </div>
@@ -332,46 +355,51 @@ async function getTactic(){
             <div class="flex flex-col w-full border-opacity-50 p-6">
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[0]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[0].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[0]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[0].id]}/img-thumb.png">
                 </div>
                 </div>
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[1]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[1].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[1]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[1].id]}/img-thumb.png">
                 </div>
                 </div>
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[2]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[2].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[2]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[2].id]}/img-thumb.png">
                 </div>
                 </div>
                 <div class="avatar indicator">
-                  <span class="indicator-item badge badge-neutral-focus">{Atiers[3]}</span> 
+                  <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[3].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{Atiers[3]}/img-thumb.png">
+                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[3].id]}/img-thumb.png">
               </div>
               </div>
-
             </div>
             </div>
           </div>
           <div class="divider"></div>
-          <p>포지션: 돌격</p>
-          <p>전투력: 11111</p>
-          <p style="max-width: 40vh;">정보: 이렇게하셈 메피죽으면 리123423145123512355235 이렇게 저렇게</p>
-
+          <p>포지션: {valueeee.position}</p>
+          <p>전투력: {valueeee.power}</p>
+          <a style="max-width: 40vh; text-decoration: underline;">
+            정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
     </div>
 </div>
 {/if}
+{/if}
 
+
+
+
+
+{#if valueeee.position == "저격"}
 <!-- 저격진형 -->
 {#if detailPage4}
 <div class="flex justify-center px-4 py-16 border-t border-base-300">
@@ -384,29 +412,29 @@ async function getTactic(){
             <div class="flex flex-col w-full border-opacity-50 p-6">
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[1]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[1].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[1]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[1].id]}/img-thumb.png">
                 </div>
                 </div>
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[2]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[2].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[2]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[2].id]}/img-thumb.png">
                 </div>
                 </div>
 
                 <div class="avatar indicator">
-                    <span class="indicator-item badge badge-neutral-focus">{Atiers[3]}</span> 
+                    <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[3].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{Atiers[3]}/img-thumb.png">
+                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[3].id]}/img-thumb.png">
                 </div>
                 </div>
                 <div class="avatar indicator">
-                  <span class="indicator-item badge badge-neutral-focus">{Atiers[4]}</span> 
+                  <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[4].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{Atiers[4]}/img-thumb.png">
+                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[4].id]}/img-thumb.png">
               </div>
               </div>
             </div>
@@ -415,9 +443,9 @@ async function getTactic(){
             <div class="flex flex-col w-full border-opacity-50" style="margin-top: 15vh;">
           
               <div class="avatar indicator">
-                  <span class="indicator-item badge badge-neutral-focus">{Atiers[0]}</span> 
+                  <span class="indicator-item badge badge-neutral-focus">LV.{valueeee.soulCharacterTacticResponseDtos[0].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{Atiers[0]}/img-thumb.png">
+                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee.soulCharacterTacticResponseDtos[0].id]}/img-thumb.png">
               </div>
               </div>
           
@@ -426,12 +454,15 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>포지션: 저격</p>
-          <p>전투력: 11111</p>
-          <p style="max-width: 40vh;">정보: 이렇게하셈 메피죽으면 리123423145123512355235 이렇게 저렇게</p>
-
+          <p>포지션: {valueeee.position}</p>
+          <p>전투력: {valueeee.power}</p>
+          <a style="max-width: 40vh; text-decoration: underline;">
+            정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
     </div>
 </div>
 {/if}
+{/if}
+{/each}
+{/await}
