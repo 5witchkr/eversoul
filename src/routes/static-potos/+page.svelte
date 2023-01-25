@@ -29,3 +29,5 @@
 <img alt="비올레트" src="https://eversoul.kakaogames.com/static/character/violette/img-thumb.png" class="loaded">
 <img alt="아드리안" src="https://eversoul.kakaogames.com/static/character/adrianne/img-thumb.png" class="loaded">
 <img alt="아야메" src="https://eversoul.kakaogames.com/static/character/ayame/img-thumb.png" class="loaded"> -->
+
+<!-- <img alt="쌍둥이신캐일러스트" src="https://eversoul.kakaogames.com/images/media/wallpaper/img-detail7.jpg" class="loaded"> -->
