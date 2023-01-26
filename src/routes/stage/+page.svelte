@@ -1,15 +1,31 @@
 <script>
+  let apidomain = `https://pickban.duckdns.org`;
 
 async function getTactic(){
-        // 원격지 데이터를 fetch로 가져오기
         let requestLocation = requestLocations.split(" ")[0];
         let requestStep = requestSteps.split(" ")[0];
         let requestBans = bans.split(" ");
-        const res = await fetch(`https://pickban.duckdns.org/api/stagetactic/${requestLocation}/${requestStep}?bans=${requestBans}`); 
+        if (requestLocation=="Pick" || requestStep=="Pick") {
+          return ;
+        }
+        const res = await fetch(`${apidomain}/api/stagetactic/${requestLocation}/${requestStep}?bans=${requestBans}`); 
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json;                   // JSON 객체 반환
     }
+
+
+    async function getComment(detailId){
+      if(typeof detailId == "undefined") {
+        return;
+      }
+        const res = await fetch(`${apidomain}/api/tacticcomment/${detailId}`); 
+        const json = await res.json(); // fetch 결과를 JSON 객체로 변환
+        return json;                   // JSON 객체 반환
+    }
+
+
     let tacticsCall = getTactic(); 
+    let commentCall = getComment();
 
         // mockdata for indexsing soulname
         let soulIndex = [ '','adrianne','catherine', 'talia','jacqueline',
@@ -40,10 +56,6 @@ async function getTactic(){
 
 	let bans = " ";
 
-	// $: if (count >= 10) {
-	// 	alert(`count is dangerously high!`);
-	// 	count = 9;
-	// }
 
 	function addBanClick() {
 		bans += ban+" ";
@@ -60,26 +72,33 @@ async function getTactic(){
     let detailPage3 = false;
     let detailPage4 = false;
 
-      const viewRecommendClick = (positonValue) =>{
+
+      const viewRecommendClick = (valueeee) =>{
         //fetch호출 후 랜더링
+        let positionValue = valueeee.position;
+        let tacticIdValue = valueeee.tacticId;
         if(selectPage) {
           selectPage = !selectPage;
         }
-        if(positonValue==="기본"){
+        if(positionValue==="기본"){
           detailPageAllOff();
           detailPage1 = !detailPage1
+          commentCall = getComment(tacticIdValue);
         }
-        if(positonValue==="수비"){
+        if(positionValue==="수비"){
           detailPageAllOff();
           detailPage2 = !detailPage2
+          commentCall = getComment(tacticIdValue);
         }
-        if(positonValue==="돌격"){
+        if(positionValue==="돌격"){
           detailPageAllOff();
           detailPage3 = !detailPage3
+          commentCall = getComment(tacticIdValue);
         }
-        if(positonValue==="저격"){
+        if(positionValue==="저격"){
           detailPageAllOff();
           detailPage4 = !detailPage4
+          commentCall = getComment(tacticIdValue);
         }
       }
 
@@ -169,16 +188,16 @@ async function getTactic(){
       {:then tactics} <!-- 정상 종료 후 처리 -->
       {#each tactics as valueeee} 
       {#if valueeee.position == "기본"}
-      <li><button class="btn" on:click={() => viewRecommendClick("기본")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      <li><button class="btn" on:click={ viewRecommendClick(valueeee)}>클리어 덱 전투력: {valueeee.power}</button></li>
       {/if}
       {#if valueeee.position == "수비"}
-      <li><button class="btn" on:click={() => viewRecommendClick("수비")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      <li><button class="btn" on:click={viewRecommendClick(valueeee)}>클리어 덱 전투력: {valueeee.power}</button></li>
       {/if}
       {#if valueeee.position == "돌격"}
-      <li><button class="btn" on:click={() => viewRecommendClick("돌격")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      <li><button class="btn" on:click={viewRecommendClick(valueeee)}>클리어 덱 전투력: {valueeee.power}</button></li>
       {/if}
       {#if valueeee.position == "저격"}
-      <li><button class="btn" on:click={() => viewRecommendClick("저격")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      <li><button class="btn" on:click={viewRecommendClick(valueeee)}>클리어 덱 전투력: {valueeee.power}</button></li>
       {/if}
       {/each}
       
@@ -251,6 +270,36 @@ async function getTactic(){
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
+<!-- 댓글작성 및 뷰 부분 -->
+<div class="divider"></div>
+
+<div class="form-control">
+  <div class="input-group">
+    <input type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+    <button class="btn btn-square">
+      작성
+    </button>
+  </div>
+  <textarea cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+  oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+  style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
+</div>
+
+{#await commentCall}
+{:then comments} <!-- 정상 종료 후 처리 -->
+{#each comments as commentValue} 
+<div class="divider"></div>
+작성자: {commentValue.username}
+<textarea cols="30" rows="1" class="textarea textarea-bordered" 
+oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+style="resize: none; padding: 8px;  max-height: 200px;" readonly>
+{commentValue.contents}
+</textarea>
+{/each}
+{/await}
+
+<!-- 댓글작성 및 뷰 부분 -->
+
     </div>
 </div>
 {/if}
@@ -319,6 +368,36 @@ async function getTactic(){
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
+<!-- 댓글작성 및 뷰 부분 -->
+      <div class="divider"></div>
+
+      <div class="form-control">
+        <div class="input-group">
+          <input type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+          <button class="btn btn-square">
+            작성
+          </button>
+        </div>
+        <textarea cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+        oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+        style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
+      </div>
+
+      {#await commentCall}
+      {:then comments} <!-- 정상 종료 후 처리 -->
+      {#each comments as commentValue} 
+      <div class="divider"></div>
+      작성자: {commentValue.username}
+      <textarea cols="30" rows="1" class="textarea textarea-bordered" 
+      oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+      style="resize: none; padding: 8px;  max-height: 200px;" readonly>
+      {commentValue.contents}
+    </textarea>
+      {/each}
+      {/await}
+      
+<!-- 댓글작성 및 뷰 부분 -->
+
     </div>
 </div>
 {/if}
@@ -386,6 +465,37 @@ async function getTactic(){
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
+
+      <!-- 댓글작성 및 뷰 부분 -->
+      <div class="divider"></div>
+
+      <div class="form-control">
+        <div class="input-group">
+          <input type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+          <button class="btn btn-square">
+            작성
+          </button>
+        </div>
+        <textarea cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+        oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+        style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
+      </div>
+
+      {#await commentCall}
+      {:then comments} <!-- 정상 종료 후 처리 -->
+      {#each comments as commentValue} 
+      <div class="divider"></div>
+      작성자: {commentValue.username}
+      <textarea cols="30" rows="1" class="textarea textarea-bordered" 
+      oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+      style="resize: none; padding: 8px;  max-height: 200px;" readonly>
+      {commentValue.contents}
+    </textarea>
+      {/each}
+      {/await}
+      
+<!-- 댓글작성 및 뷰 부분 -->
+
     </div>
 </div>
 {/if}
@@ -456,6 +566,36 @@ async function getTactic(){
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
+<!-- 댓글작성 및 뷰 부분 -->
+<div class="divider"></div>
+
+<div class="form-control">
+  <div class="input-group">
+    <input type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+    <button class="btn btn-square">
+      작성
+    </button>
+  </div>
+  <textarea cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+  oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+  style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
+</div>
+
+{#await commentCall}
+{:then comments} <!-- 정상 종료 후 처리 -->
+{#each comments as commentValue} 
+<div class="divider"></div>
+작성자: {commentValue.username}
+<textarea cols="30" rows="1" class="textarea textarea-bordered" 
+oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+style="resize: none; padding: 8px;  max-height: 200px;" readonly>
+{commentValue.contents}
+</textarea>
+{/each}
+{/await}
+
+<!-- 댓글작성 및 뷰 부분 -->
+
     </div>
 </div>
 {/if}

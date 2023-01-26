@@ -1,7 +1,8 @@
 <script>
+      let apidomain = `https://pickban.duckdns.org`;
     async function getSSS(){
         // 원격지 데이터를 fetch로 가져오기
-        const res = await fetch("https://pickban.duckdns.org/api/soulcharacter/tier?tier=SSS"); 
+        const res = await fetch(`${apidomain}/api/soulcharacter/tier?tier=SSS`); 
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json;                   // JSON 객체 반환
     }
@@ -10,7 +11,7 @@
 
     async function getSS(){
         // 원격지 데이터를 fetch로 가져오기
-        const res = await fetch('https://pickban.duckdns.org/api/soulcharacter/tier?tier=SS'); 
+        const res = await fetch(`${apidomain}/api/soulcharacter/tier?tier=SS`); 
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json;                   // JSON 객체 반환
     }
@@ -19,7 +20,7 @@
 
     async function getS(){
         // 원격지 데이터를 fetch로 가져오기
-        const res = await fetch('https://pickban.duckdns.org/api/soulcharacter/tier?tier=S'); 
+        const res = await fetch(`${apidomain}/api/soulcharacter/tier?tier=S`); 
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json;                   // JSON 객체 반환
     }
@@ -28,7 +29,7 @@
 
     async function getA(){
         // 원격지 데이터를 fetch로 가져오기
-        const res = await fetch('https://pickban.duckdns.org/api/soulcharacter/tier?tier=A'); 
+        const res = await fetch(`${apidomain}/api/soulcharacter/tier?tier=A`); 
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json;                   // JSON 객체 반환
     }
@@ -37,7 +38,7 @@
 
     async function getB(){
         // 원격지 데이터를 fetch로 가져오기
-        const res = await fetch('https://pickban.duckdns.org/api/soulcharacter/tier?tier=B'); 
+        const res = await fetch(`${apidomain}/api/soulcharacter/tier?tier=B`); 
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json;                   // JSON 객체 반환
     }
@@ -58,7 +59,7 @@
 
 <div tabindex="0" class="collapse border border-base-300 bg-base-100 rounded-box"> 
     <div class="collapse-title text-xl font-medium text-center">
-      정령 티어표
+      정령 티어표 정보
     </div>
     <div class="collapse-content"> 
         <div class="badge badge-secondary">SSS티어</div>
