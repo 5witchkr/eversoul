@@ -32,6 +32,9 @@ async function getTactic(){
     }
 
     async function createComment() {
+      if(typeof tacticIdValue == "undefined") {
+        return;
+      }
 		const respost = await fetch(`${apidomain}/api/tacticcomment`, {
             headers:{'Content-Type':'application/json'},
             //cookie
@@ -55,7 +58,7 @@ async function getTactic(){
 
     let tacticsCall = getTactic(); 
     let commentCall = getComment();
-    let commentPostCall= createComment();
+
 
         // mockdata for indexsing soulname
         let soulIndex = [ '','adrianne','catherine', 'talia','jacqueline',
