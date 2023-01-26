@@ -1,8 +1,8 @@
 <script>
-
+  let apidomain = `https://pickban.duckdns.org`;
 
 async function createPost() {
-		const res = await fetch(`https://pickban.duckdns.org/api/stagetactic/tactic`, {
+		const res = await fetch(`${apidomain}/api/stagetactic/tactic`, {
             headers:{'Content-Type':'application/json'},
             //cookie
 			method: 'POST',

@@ -1,15 +1,53 @@
 <script>
+  let apidomain = `https://pickban.duckdns.org`;
 
 async function getTactic(){
-        // 원격지 데이터를 fetch로 가져오기
         let requestLocation = requestLocations.split(" ")[0];
         let requestStep = requestSteps.split(" ")[0];
         let requestBans = bans.split(" ");
-        const res = await fetch(`https://pickban.duckdns.org/api/stagetactic/${requestLocation}/${requestStep}?bans=${requestBans}`); 
+        if (requestLocation=="Pick" || requestStep=="Pick") {
+          return ;
+        }
+        const res = await fetch(`${apidomain}/api/stagetactic/${requestLocation}/${requestStep}?bans=${requestBans}`); 
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json;                   // JSON 객체 반환
     }
+
+
+    async function getComment(detailId){
+      if(typeof detailId == "undefined") {
+        return;
+      }
+        const res = await fetch(`${apidomain}/api/tacticcomment/${detailId}`); 
+        const json = await res.json(); // fetch 결과를 JSON 객체로 변환
+        return json;                   // JSON 객체 반환
+    }
+
+    async function createComment() {
+		const respost = await fetch(`${apidomain}/api/tacticcomment`, {
+            headers:{'Content-Type':'application/json'},
+            //cookie
+			method: 'POST',
+			body: JSON.stringify({
+        tacticId: tacticIdValue,
+        username,
+        contents
+		})
+		})
+    const postStatus = await respost.status;
+        if (postStatus == 201) {    
+            contents = "";
+            alert("댓글을 작성했습니다");
+            callDetailPage();
+        } else{
+        alert("입력값을 확인해주세요.");
+    }
+	}
+
+
     let tacticsCall = getTactic(); 
+    let commentCall = getComment();
+    let commentPostCall= createComment();
 
         // mockdata for indexsing soulname
         let soulIndex = [ '','adrianne','catherine', 'talia','jacqueline',
@@ -37,13 +75,13 @@ async function getTactic(){
     //api call values
     let requestLocations;
     let requestSteps;
+    let username;
+    let contents;
+    let tacticIdValue;
+    let positionValue;
 
 	let bans = " ";
 
-	// $: if (count >= 10) {
-	// 	alert(`count is dangerously high!`);
-	// 	count = 9;
-	// }
 
 	function addBanClick() {
 		bans += ban+" ";
@@ -60,27 +98,31 @@ async function getTactic(){
     let detailPage3 = false;
     let detailPage4 = false;
 
-      const viewRecommendClick = (positonValue) =>{
+
+      const viewRecommendClick = (valueeee) =>{
         //fetch호출 후 랜더링
+        positionValue = valueeee.position;
+        tacticIdValue = valueeee.tacticId;
+        callDetailPage()
+      }
+      function callDetailPage(){
         if(selectPage) {
           selectPage = !selectPage;
         }
-        if(positonValue==="기본"){
-          detailPageAllOff();
+        detailPageAllOff();
+        if(positionValue==="기본"){
           detailPage1 = !detailPage1
         }
-        if(positonValue==="수비"){
-          detailPageAllOff();
+        if(positionValue==="수비"){
           detailPage2 = !detailPage2
         }
-        if(positonValue==="돌격"){
-          detailPageAllOff();
+        if(positionValue==="돌격"){
           detailPage3 = !detailPage3
         }
-        if(positonValue==="저격"){
-          detailPageAllOff();
+        if(positionValue==="저격"){
           detailPage4 = !detailPage4
         }
+        commentCall = getComment(tacticIdValue);
       }
 
       function detailPageAllOff(){
@@ -169,16 +211,16 @@ async function getTactic(){
       {:then tactics} <!-- 정상 종료 후 처리 -->
       {#each tactics as valueeee} 
       {#if valueeee.position == "기본"}
-      <li><button class="btn" on:click={() => viewRecommendClick("기본")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      <li><button class="btn" on:click={ viewRecommendClick(valueeee)}>클리어 덱 전투력: {valueeee.power}</button></li>
       {/if}
       {#if valueeee.position == "수비"}
-      <li><button class="btn" on:click={() => viewRecommendClick("수비")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      <li><button class="btn" on:click={viewRecommendClick(valueeee)}>클리어 덱 전투력: {valueeee.power}</button></li>
       {/if}
       {#if valueeee.position == "돌격"}
-      <li><button class="btn" on:click={() => viewRecommendClick("돌격")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      <li><button class="btn" on:click={viewRecommendClick(valueeee)}>클리어 덱 전투력: {valueeee.power}</button></li>
       {/if}
       {#if valueeee.position == "저격"}
-      <li><button class="btn" on:click={() => viewRecommendClick("저격")}>클리어 덱 전투력: {valueeee.power}</button></li>
+      <li><button class="btn" on:click={viewRecommendClick(valueeee)}>클리어 덱 전투력: {valueeee.power}</button></li>
       {/if}
       {/each}
       
@@ -251,6 +293,33 @@ async function getTactic(){
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
+<!-- 댓글작성 및 뷰 부분 -->
+<div class="divider"></div>
+
+<div class="form-control">
+  <div class="input-group">
+    <input bind:value={username} type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+    <button on:click={() => commentPostCall = createComment()} class="btn btn-square">
+      작성
+    </button>
+  </div>
+  <textarea bind:value={contents} cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+  oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+  style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
+</div>
+<div class="divider"></div>
+{#await commentCall}
+{:then comments} <!-- 정상 종료 후 처리 -->
+{#each comments as commentValue} 
+<p style="padding: 2vm;">작성자: {commentValue.username}</p>
+<div class="chat chat-start">
+  <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
+</div>
+{/each}
+{/await}
+
+<!-- 댓글작성 및 뷰 부분 -->
+
     </div>
 </div>
 {/if}
@@ -319,6 +388,33 @@ async function getTactic(){
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
+<!-- 댓글작성 및 뷰 부분 -->
+      <div class="divider"></div>
+
+      <div class="form-control">
+        <div class="input-group">
+          <input bind:value={username} type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+          <button on:click={() => commentPostCall = createComment()} class="btn btn-square">
+            작성
+          </button>
+        </div>
+        <textarea bind:value={contents} cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+        oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+        style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
+      </div>
+      <div class="divider"></div>
+      {#await commentCall}
+      {:then comments} <!-- 정상 종료 후 처리 -->
+      {#each comments as commentValue} 
+      <p style="padding: 2vm;">작성자: {commentValue.username}</p>
+      <div class="chat chat-start">
+        <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
+      </div>
+      {/each}
+      {/await}
+      
+<!-- 댓글작성 및 뷰 부분 -->
+
     </div>
 </div>
 {/if}
@@ -386,6 +482,33 @@ async function getTactic(){
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
+<!-- 댓글작성 및 뷰 부분 -->
+<div class="divider"></div>
+
+<div class="form-control">
+  <div class="input-group">
+    <input bind:value={username} type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+    <button on:click={() => commentPostCall = createComment()} class="btn btn-square">
+      작성
+    </button>
+  </div>
+  <textarea bind:value={contents} cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+  oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+  style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
+</div>
+<div class="divider"></div>
+{#await commentCall}
+{:then comments} <!-- 정상 종료 후 처리 -->
+{#each comments as commentValue} 
+<p style="padding: 2vm;">작성자: {commentValue.username}</p>
+<div class="chat chat-start">
+  <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
+</div>
+{/each}
+{/await}
+
+<!-- 댓글작성 및 뷰 부분 -->
+
     </div>
 </div>
 {/if}
@@ -456,6 +579,33 @@ async function getTactic(){
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
+<!-- 댓글작성 및 뷰 부분 -->
+<div class="divider"></div>
+
+<div class="form-control">
+  <div class="input-group">
+    <input bind:value={username} type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+    <button on:click={() => commentPostCall = createComment()} class="btn btn-square">
+      작성
+    </button>
+  </div>
+  <textarea bind:value={contents} cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+  oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+  style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
+</div>
+<div class="divider"></div>
+{#await commentCall}
+{:then comments} <!-- 정상 종료 후 처리 -->
+{#each comments as commentValue} 
+<p style="padding: 2vm;">작성자: {commentValue.username}</p>
+<div class="chat chat-start">
+  <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
+</div>
+{/each}
+{/await}
+
+<!-- 댓글작성 및 뷰 부분 -->
+
     </div>
 </div>
 {/if}
