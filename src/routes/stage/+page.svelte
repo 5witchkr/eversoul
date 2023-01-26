@@ -48,7 +48,6 @@ async function getTactic(){
     const postStatus = await respost.status;
         if (postStatus == 201) {    
             contents = "";
-            alert("댓글을 작성했습니다");
             callDetailPage();
         } else{
         alert("입력값을 확인해주세요.");
