@@ -23,9 +23,31 @@ async function getTactic(){
         return json;                   // JSON 객체 반환
     }
 
+    async function createComment() {
+		const respost = await fetch(`${apidomain}/api/tacticcomment`, {
+            headers:{'Content-Type':'application/json'},
+            //cookie
+			method: 'POST',
+			body: JSON.stringify({
+        tacticId: tacticIdValue,
+        username,
+        contents
+		})
+		})
+    const postStatus = await respost.status;
+        if (postStatus == 201) {    
+            contents = "";
+            alert("댓글을 작성했습니다");
+            callDetailPage();
+        } else{
+        alert("입력값을 확인해주세요.");
+    }
+	}
+
 
     let tacticsCall = getTactic(); 
     let commentCall = getComment();
+    let commentPostCall= createComment();
 
         // mockdata for indexsing soulname
         let soulIndex = [ '','adrianne','catherine', 'talia','jacqueline',
@@ -53,6 +75,10 @@ async function getTactic(){
     //api call values
     let requestLocations;
     let requestSteps;
+    let username;
+    let contents;
+    let tacticIdValue;
+    let positionValue;
 
 	let bans = " ";
 
@@ -75,31 +101,28 @@ async function getTactic(){
 
       const viewRecommendClick = (valueeee) =>{
         //fetch호출 후 랜더링
-        let positionValue = valueeee.position;
-        let tacticIdValue = valueeee.tacticId;
+        positionValue = valueeee.position;
+        tacticIdValue = valueeee.tacticId;
+        callDetailPage()
+      }
+      function callDetailPage(){
         if(selectPage) {
           selectPage = !selectPage;
         }
+        detailPageAllOff();
         if(positionValue==="기본"){
-          detailPageAllOff();
           detailPage1 = !detailPage1
-          commentCall = getComment(tacticIdValue);
         }
         if(positionValue==="수비"){
-          detailPageAllOff();
           detailPage2 = !detailPage2
-          commentCall = getComment(tacticIdValue);
         }
         if(positionValue==="돌격"){
-          detailPageAllOff();
           detailPage3 = !detailPage3
-          commentCall = getComment(tacticIdValue);
         }
         if(positionValue==="저격"){
-          detailPageAllOff();
           detailPage4 = !detailPage4
-          commentCall = getComment(tacticIdValue);
         }
+        commentCall = getComment(tacticIdValue);
       }
 
       function detailPageAllOff(){
@@ -275,26 +298,23 @@ async function getTactic(){
 
 <div class="form-control">
   <div class="input-group">
-    <input type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
-    <button class="btn btn-square">
+    <input bind:value={username} type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+    <button on:click={() => commentPostCall = createComment()} class="btn btn-square">
       작성
     </button>
   </div>
-  <textarea cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+  <textarea bind:value={contents} cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
   oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
   style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
 </div>
-
+<div class="divider"></div>
 {#await commentCall}
 {:then comments} <!-- 정상 종료 후 처리 -->
 {#each comments as commentValue} 
-<div class="divider"></div>
-작성자: {commentValue.username}
-<textarea cols="30" rows="1" class="textarea textarea-bordered" 
-oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
-style="resize: none; padding: 8px;  max-height: 200px;" readonly>
-{commentValue.contents}
-</textarea>
+<p style="padding: 2vm;">작성자: {commentValue.username}</p>
+<div class="chat chat-start">
+  <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
+</div>
 {/each}
 {/await}
 
@@ -373,26 +393,23 @@ style="resize: none; padding: 8px;  max-height: 200px;" readonly>
 
       <div class="form-control">
         <div class="input-group">
-          <input type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
-          <button class="btn btn-square">
+          <input bind:value={username} type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+          <button on:click={() => commentPostCall = createComment()} class="btn btn-square">
             작성
           </button>
         </div>
-        <textarea cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+        <textarea bind:value={contents} cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
         oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
         style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
       </div>
-
+      <div class="divider"></div>
       {#await commentCall}
       {:then comments} <!-- 정상 종료 후 처리 -->
       {#each comments as commentValue} 
-      <div class="divider"></div>
-      작성자: {commentValue.username}
-      <textarea cols="30" rows="1" class="textarea textarea-bordered" 
-      oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
-      style="resize: none; padding: 8px;  max-height: 200px;" readonly>
-      {commentValue.contents}
-    </textarea>
+      <p style="padding: 2vm;">작성자: {commentValue.username}</p>
+      <div class="chat chat-start">
+        <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
+      </div>
       {/each}
       {/await}
       
@@ -465,35 +482,31 @@ style="resize: none; padding: 8px;  max-height: 200px;" readonly>
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
+<!-- 댓글작성 및 뷰 부분 -->
+<div class="divider"></div>
 
-      <!-- 댓글작성 및 뷰 부분 -->
-      <div class="divider"></div>
+<div class="form-control">
+  <div class="input-group">
+    <input bind:value={username} type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+    <button on:click={() => commentPostCall = createComment()} class="btn btn-square">
+      작성
+    </button>
+  </div>
+  <textarea bind:value={contents} cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+  oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
+  style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
+</div>
+<div class="divider"></div>
+{#await commentCall}
+{:then comments} <!-- 정상 종료 후 처리 -->
+{#each comments as commentValue} 
+<p style="padding: 2vm;">작성자: {commentValue.username}</p>
+<div class="chat chat-start">
+  <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
+</div>
+{/each}
+{/await}
 
-      <div class="form-control">
-        <div class="input-group">
-          <input type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
-          <button class="btn btn-square">
-            작성
-          </button>
-        </div>
-        <textarea cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
-        oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
-        style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
-      </div>
-
-      {#await commentCall}
-      {:then comments} <!-- 정상 종료 후 처리 -->
-      {#each comments as commentValue} 
-      <div class="divider"></div>
-      작성자: {commentValue.username}
-      <textarea cols="30" rows="1" class="textarea textarea-bordered" 
-      oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
-      style="resize: none; padding: 8px;  max-height: 200px;" readonly>
-      {commentValue.contents}
-    </textarea>
-      {/each}
-      {/await}
-      
 <!-- 댓글작성 및 뷰 부분 -->
 
     </div>
@@ -571,26 +584,23 @@ style="resize: none; padding: 8px;  max-height: 200px;" readonly>
 
 <div class="form-control">
   <div class="input-group">
-    <input type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
-    <button class="btn btn-square">
+    <input bind:value={username} type="text" placeholder="닉네임을 입력해주세요" class="input input-bordered" />
+    <button on:click={() => commentPostCall = createComment()} class="btn btn-square">
       작성
     </button>
   </div>
-  <textarea cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
+  <textarea bind:value={contents} cols="30" rows="1" placeholder="내용을 입력해주세요" class="textarea textarea-bordered" 
   oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
   style="resize: none; padding: 8px;  max-height: 200px;"></textarea>
 </div>
-
+<div class="divider"></div>
 {#await commentCall}
 {:then comments} <!-- 정상 종료 후 처리 -->
 {#each comments as commentValue} 
-<div class="divider"></div>
-작성자: {commentValue.username}
-<textarea cols="30" rows="1" class="textarea textarea-bordered" 
-oninput='this.style.height = ""; this.style.height = this.scrollHeight + "px"'
-style="resize: none; padding: 8px;  max-height: 200px;" readonly>
-{commentValue.contents}
-</textarea>
+<p style="padding: 2vm;">작성자: {commentValue.username}</p>
+<div class="chat chat-start">
+  <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
+</div>
 {/each}
 {/await}
 
