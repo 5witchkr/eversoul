@@ -25,13 +25,13 @@
         </div>
       </div>
     </div>
-    
+
     <slot></slot>
 
   </div> 
   <div class="drawer-side">
     <label for="my-drawer" class="drawer-overlay"></label>
-    <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+    <ul class="menu p-4 w-80 bg-base-100 text-base-content" style="max-width: 55vw;">
       <!-- Sidebar content here -->
       <li><a href="/stage">스테이지 공략</a></li>
       <li><a href="/story">인연스토리 공략</a></li>
