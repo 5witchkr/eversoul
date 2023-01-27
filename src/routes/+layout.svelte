@@ -10,7 +10,7 @@
       </label>
       <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
         <li><a href="/stage">스테이지 공략</a></li>
-        <li><label for="my-modal">인연스토리 공략</label></li>
+        <li><a href="/story">인연스토리 공략</a></li>
         <li><label for="my-modal2">문의사항 접수</label></li>
       </ul>
     </div>
@@ -23,18 +23,6 @@
       <ul class="menu menu-horizontal px-1">
         <li><a href="/tier">정령 티어표</a></li>
       </ul>
-    </div>
-  </div>
-</div>
-
-<!-- Put this part before </body> tag -->
-<input type="checkbox" id="my-modal" class="modal-toggle" />
-<div class="modal">
-  <div class="modal-box">
-    <h3 class="font-bold text-lg">죄송합니다!</h3>
-    <p class="py-4">인연스토리 공략은 준비중입니다.. 열심히 만들고있으니 기다려주세요</p>
-    <div class="modal-action">
-      <label for="my-modal" class="btn">확인</label>
     </div>
   </div>
 </div>
