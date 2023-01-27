@@ -291,7 +291,7 @@ async function getTactic(){
           <div class="divider"></div>
           <p>포지션: {valueeee.position}</p>
           <p>전투력: {valueeee.power}</p>
-          <a style="max-width: 40vh; text-decoration: underline;">
+          <a style="max-width: 35vh;">
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
@@ -313,7 +313,7 @@ async function getTactic(){
 {#await commentCall}
 {:then comments} <!-- 정상 종료 후 처리 -->
 {#each comments as commentValue} 
-<p style="padding: 2vm;">작성자: {commentValue.username}</p>
+<p style="padding: 2vm;"> {commentValue.username}</p>
 <div class="chat chat-start">
   <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
 </div>
@@ -386,7 +386,7 @@ async function getTactic(){
           <div class="divider"></div>
           <p>포지션: {valueeee.position}</p>
           <p>전투력: {valueeee.power}</p>
-          <a style="max-width: 40vh; text-decoration: underline;">
+          <a style="max-width: 35vh;">
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
@@ -408,7 +408,7 @@ async function getTactic(){
       {#await commentCall}
       {:then comments} <!-- 정상 종료 후 처리 -->
       {#each comments as commentValue} 
-      <p style="padding: 2vm;">작성자: {commentValue.username}</p>
+      <p style="padding: 2vm;"> {commentValue.username}</p>
       <div class="chat chat-start">
         <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
       </div>
@@ -480,7 +480,7 @@ async function getTactic(){
           <div class="divider"></div>
           <p>포지션: {valueeee.position}</p>
           <p>전투력: {valueeee.power}</p>
-          <a style="max-width: 40vh; text-decoration: underline;">
+          <a style="max-width: 35vh;">
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
@@ -502,7 +502,7 @@ async function getTactic(){
 {#await commentCall}
 {:then comments} <!-- 정상 종료 후 처리 -->
 {#each comments as commentValue} 
-<p style="padding: 2vm;">작성자: {commentValue.username}</p>
+<p style="padding: 2vm;"> {commentValue.username}</p>
 <div class="chat chat-start">
   <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
 </div>
@@ -577,7 +577,7 @@ async function getTactic(){
           <div class="divider"></div>
           <p>포지션: {valueeee.position}</p>
           <p>전투력: {valueeee.power}</p>
-          <a style="max-width: 40vh; text-decoration: underline;">
+          <a style="max-width: 35vh;">
             정보: {valueeee.info}</a>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
@@ -599,7 +599,7 @@ async function getTactic(){
 {#await commentCall}
 {:then comments} <!-- 정상 종료 후 처리 -->
 {#each comments as commentValue} 
-<p style="padding: 2vm;">작성자: {commentValue.username}</p>
+<p style="padding: 2vm;"> {commentValue.username}</p>
 <div class="chat chat-start">
   <div class="chat-bubble" style="max-width: 200px;">{commentValue.contents}</div>
 </div>
