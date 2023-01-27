@@ -36,8 +36,8 @@
       <div class="max-w-md ">
         <h1 class="text-3xl font-bold">인연스토리 공략</h1>
         <p class="py-6">정령들의 인연스토리 공략입니다.</p>
-        <a href="/">
-          <button class="btn btn-error">곧 준비 될 예정입니다.</button>
+        <a href="/story">
+          <button class="btn btn-error">바로가기</button>
       </a>
     </div>
 
