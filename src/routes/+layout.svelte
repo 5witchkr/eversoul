@@ -10,7 +10,7 @@
       </label>
       <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
         <li><a href="/stage">스테이지 공략</a></li>
-        <li><a href="/story">스테이지 공략</a></li>
+        <li><a href="/story">인연스토리 공략</a></li>
         <li><label for="my-modal2">문의사항 접수</label></li>
       </ul>
     </div>
