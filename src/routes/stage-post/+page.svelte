@@ -44,7 +44,7 @@ async function createPost() {
         let requestStep;
         let requestPosition;
         let requestPower;
-        let requestInfo;
+        let requestInfo="";
         let requestSoulsWithLevel = [];
 
 
