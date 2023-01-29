@@ -7,6 +7,7 @@ async function createPost() {
             //cookie
 			method: 'POST',
 			body: JSON.stringify({
+        title: requestTitle,
         location: requestLocation.split(" ")[0],
         step: requestStep.split(" ")[0],
         position: requestPosition.split(" ")[0],
