@@ -144,6 +144,7 @@ async function getTactic(){
 
 <svelte:head>
     <title>에버소울 스테이지 공략</title> 
+    <meta name="google-site-verification" content="pNufb0t9GRFKmsq3cE06y-JltE7IgsZKu93MCOL0xng" />
 </svelte:head>
 
 
