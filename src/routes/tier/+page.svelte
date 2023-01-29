@@ -1,5 +1,5 @@
 <script>
-      let apidomain = `https://pickban.duckdns.org`;
+      let apidomain = `https://eversoul.duckdns.org`;
     async function getSSS(){
         // 원격지 데이터를 fetch로 가져오기
         const res = await fetch(`${apidomain}/api/soulcharacter/tier?tier=SSS`); 

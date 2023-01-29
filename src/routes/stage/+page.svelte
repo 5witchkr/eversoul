@@ -1,5 +1,5 @@
 <script>
-  let apidomain = `https://pickban.duckdns.org`;
+  let apidomain = `https://eversoul.duckdns.org`;
 
     //api call values
     let requestLocations;
@@ -220,7 +220,7 @@ async function getTactic(){
       {#await tacticsCall}
       {:then tactics} <!-- 정상 종료 후 처리 -->
       {#each tactics as valueeee ,idx} 
-      <li><button class="btn" on:click={ viewRecommendClick(valueeee, idx)}>클리어 덱 전투력: {valueeee.power}</button></li>
+      <li><button class="btn" on:click={ viewRecommendClick(valueeee, idx)}>추천도:{valueeee.recommendCount} {valueeee.title}({valueeee.power})</button></li>
       {/each}
       {/await}
     </ul>
