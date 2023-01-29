@@ -1,3 +1,11 @@
+<script>
+
+</script>
+<svelte:head>
+    <title>에버소울 공략</title> 
+</svelte:head>
+
+
 <div class="hero min-h-screen" style="background-image: url(https://eversoul.kakaogames.com/images/media/wallpaper/img-detail7.jpg);">
   <div class="hero-overlay bg-opacity-60"></div>
   <div class="hero-content text-center text-neutral-content">

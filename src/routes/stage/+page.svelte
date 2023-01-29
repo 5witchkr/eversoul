@@ -141,6 +141,12 @@ async function getTactic(){
 
 
 </script>
+
+<svelte:head>
+    <title>에버소울 스테이지 공략</title> 
+</svelte:head>
+
+
 {#if selectPage}
     <div class="flex justify-center px-4 py-16 border-t border-base-300">
         <div class="flex flex-col w-300">

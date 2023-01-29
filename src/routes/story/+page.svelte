@@ -46,6 +46,11 @@
     }
 </script>
 
+<svelte:head>
+    <title>에버소울 인연스토리 공략</title> 
+</svelte:head>
+
+
 
 {#if selectPage}
 <div class="flex justify-center px-4 py-16 border-t border-base-300">
