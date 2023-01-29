@@ -19,17 +19,7 @@ async function createPost() {
         if (postStatus == 201) {    
             successCall = true;
         } else{
-          console.log(requestSoulsWithLevel[0].soulId)
-          console.log(requestSoulsWithLevel[0].level)
-          console.log(requestSoulsWithLevel[1].soulId)
-          console.log(requestSoulsWithLevel[1].level)
-          console.log(requestSoulsWithLevel[2].soulId)
-          console.log(requestSoulsWithLevel[2].level)
-          console.log(requestSoulsWithLevel[3].soulId)
-          console.log(requestSoulsWithLevel[3].level)
-          console.log(requestSoulsWithLevel[4].soulId)
-          console.log(requestSoulsWithLevel[4].level)
-        alert("입력값을 확인해주세요.");
+        alert("입력값을 확인해주세요 (정령은 중복입력 할 수 없습니다!)");
     }
 	}
     let successCall = false;
