@@ -27,6 +27,7 @@
           return ;
         }
         episodeValue = 0;
+        soulValue = soulCharacters.indexOf(soulValue) + 1;
         const res = await fetch(`${apidomain}/api/story/${soulValue}?episode=${episodeValue}&ending=${endingValue}`);
         if(res.status == 200){
             selectPage = !selectPage;

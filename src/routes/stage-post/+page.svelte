@@ -19,6 +19,16 @@ async function createPost() {
         if (postStatus == 201) {    
             successCall = true;
         } else{
+          console.log(requestSoulsWithLevel[0].soulId)
+          console.log(requestSoulsWithLevel[0].level)
+          console.log(requestSoulsWithLevel[1].soulId)
+          console.log(requestSoulsWithLevel[1].level)
+          console.log(requestSoulsWithLevel[2].soulId)
+          console.log(requestSoulsWithLevel[2].level)
+          console.log(requestSoulsWithLevel[3].soulId)
+          console.log(requestSoulsWithLevel[3].level)
+          console.log(requestSoulsWithLevel[4].soulId)
+          console.log(requestSoulsWithLevel[4].level)
         alert("입력값을 확인해주세요.");
     }
 	}
@@ -73,9 +83,9 @@ async function createPost() {
             if (inputSoulLevel < 1 || inputSoulName=='') {
                 return alert("레벨과 정령이름을 전부 입력해주세요.");
             }
-            selectedSouls += inputSoulLevel;
-            selectedSouls += "/"+inputSoulName+"/";
-            requestSoulsWithLevel.push({"name": inputSoulName, "level": inputSoulLevel})
+            selectedSouls += "Lv"+inputSoulLevel;
+            selectedSouls += inputSoulName+" ";
+            requestSoulsWithLevel.push({"soulId": soulcharacters.indexOf(inputSoulName)+1, "level": inputSoulLevel})
             maxSoulsValue += 1;
         }
 </script>
