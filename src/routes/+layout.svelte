@@ -2,6 +2,10 @@
   import "../app.css";
 </script>
 
+<svelte:head>
+    <title>에버소울 공략</title> 
+</svelte:head>
+
 <div class="navbar bg-base-100">
   <div class="navbar-start">
     <div class="dropdown">

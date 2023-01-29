@@ -57,6 +57,12 @@
 
 </script>
 
+<svelte:head>
+    <title>에버소울 티어표</title> 
+</svelte:head>
+
+
+
 <div tabindex="0" class="collapse border border-base-300 bg-base-100 rounded-box"> 
     <div class="collapse-title text-xl font-medium text-center">
       정령 티어표 정보

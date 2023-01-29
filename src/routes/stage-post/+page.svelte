@@ -90,6 +90,11 @@ async function createPost() {
         }
 </script>
 
+<svelte:head>
+    <title>스테이지 공략 작성페이지</title> 
+</svelte:head>
+
+
 {#if !successCall}
 <div class="flex justify-center px-4 py-16 border-t border-base-300">
     <div class="flex flex-col w-300">
