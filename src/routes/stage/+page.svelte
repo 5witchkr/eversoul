@@ -55,6 +55,24 @@ async function getTactic(){
 	}
 
 
+  async function postRecommend() {
+      if(typeof tacticIdValue == "undefined") {
+        return;
+      }
+		const respost = await fetch(`${apidomain}/api/tacticrecommend/${tacticIdValue}`, {
+            headers:{'Content-Type':'application/json'},
+            //cookie
+			method: 'POST'
+		})
+    const postStatus = await respost.status;
+        if (postStatus == 201) {    
+            contents = "";
+            callDetailPage();
+            alert("이 공략을 추천했습니다. (하루에 한번만 가능)")
+    }
+	}
+
+
     let tacticsCall = getTactic(); 
     let commentCall = getComment();
 
@@ -229,6 +247,7 @@ async function getTactic(){
 
 {#await tacticsCall}
 {:then valueeee} <!-- 정상 종료 후 처리 -->
+{#if valueeee[tacticIndex]}
 {#if valueeee[tacticIndex].position == "기본"}
 <!-- 기본진형 -->
 {#if detailPage1}
@@ -284,10 +303,15 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
+          <p>제목: {valueeee[tacticIndex].title}</p>
           <p>포지션: {valueeee[tacticIndex].position}</p>
           <p>전투력: {valueeee[tacticIndex].power}</p>
           <a style="max-width: 35vh;">
             정보: {valueeee[tacticIndex].info}</a>
+            <div class="rating gap-1" >
+              <a>추천하기</a>
+              <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
+            </div>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
 <!-- 댓글작성 및 뷰 부분 -->
@@ -321,9 +345,10 @@ async function getTactic(){
 </div>
 {/if}
 {/if}
+{/if}
 
 
-
+{#if valueeee[tacticIndex]}
 {#if valueeee[tacticIndex].position == "수비"}
 <!-- 수비진형 -->
 {#if detailPage2}
@@ -379,10 +404,15 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
+          <p>제목: {valueeee[tacticIndex].title}</p>
           <p>포지션: {valueeee[tacticIndex].position}</p>
           <p>전투력: {valueeee[tacticIndex].power}</p>
           <a style="max-width: 35vh;">
             정보: {valueeee[tacticIndex].info}</a>
+            <div class="rating gap-1" >
+              <a>추천하기</a>
+              <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
+            </div>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
 <!-- 댓글작성 및 뷰 부분 -->
@@ -416,9 +446,10 @@ async function getTactic(){
 </div>
 {/if}
 {/if}
+{/if}
 
 
-
+{#if valueeee[tacticIndex]}
 {#if valueeee[tacticIndex].position == "돌격"}
 <!-- 돌격진형 -->
 {#if detailPage3}
@@ -473,10 +504,15 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
+          <p>제목: {valueeee[tacticIndex].title}</p>
           <p>포지션: {valueeee[tacticIndex].position}</p>
           <p>전투력: {valueeee[tacticIndex].power}</p>
           <a style="max-width: 35vh;">
             정보: {valueeee[tacticIndex].info}</a>
+            <div class="rating gap-1" >
+              <a>추천하기</a>
+              <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
+            </div>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
 <!-- 댓글작성 및 뷰 부분 -->
@@ -510,11 +546,11 @@ async function getTactic(){
 </div>
 {/if}
 {/if}
+{/if}
 
 
 
-
-
+{#if valueeee[tacticIndex]}
 {#if valueeee[tacticIndex].position == "저격"}
 <!-- 저격진형 -->
 {#if detailPage4}
@@ -570,10 +606,15 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
+          <p>제목: {valueeee[tacticIndex].title}</p>
           <p>포지션: {valueeee[tacticIndex].position}</p>
           <p>전투력: {valueeee[tacticIndex].power}</p>
           <a style="max-width: 35vh;">
             정보: {valueeee[tacticIndex].info}</a>
+            <div class="rating gap-1" >
+              <a>추천하기</a>
+              <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
+            </div>
       <div class="divider"></div>
       <button class="btn" on:click={retryClick}>다시 고르기</button>
 <!-- 댓글작성 및 뷰 부분 -->
@@ -607,4 +648,6 @@ async function getTactic(){
 </div>
 {/if}
 {/if}
+{/if}
+
 {/await}
