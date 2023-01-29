@@ -103,7 +103,9 @@ async function getTactic(){
       const viewRecommendClick = (valueeee, idx) =>{
         //fetch호출 후 랜더링
         tacticIndex = idx;
+        console.log(tacticIndex)
         positionValue = valueeee.position;
+        console.log(positionValue)
         tacticIdValue = valueeee.tacticId;
         callDetailPage()
       }
@@ -229,6 +231,7 @@ async function getTactic(){
 
 {#await tacticsCall}
 {:then valueeee} <!-- 정상 종료 후 처리 -->
+{#if valueeee[tacticIndex]}
 {#if valueeee[tacticIndex].position == "기본"}
 <!-- 기본진형 -->
 {#if detailPage1}
@@ -321,9 +324,10 @@ async function getTactic(){
 </div>
 {/if}
 {/if}
+{/if}
 
 
-
+{#if valueeee[tacticIndex]}
 {#if valueeee[tacticIndex].position == "수비"}
 <!-- 수비진형 -->
 {#if detailPage2}
@@ -416,9 +420,10 @@ async function getTactic(){
 </div>
 {/if}
 {/if}
+{/if}
 
 
-
+{#if valueeee[tacticIndex]}
 {#if valueeee[tacticIndex].position == "돌격"}
 <!-- 돌격진형 -->
 {#if detailPage3}
@@ -510,11 +515,11 @@ async function getTactic(){
 </div>
 {/if}
 {/if}
+{/if}
 
 
 
-
-
+{#if valueeee[tacticIndex]}
 {#if valueeee[tacticIndex].position == "저격"}
 <!-- 저격진형 -->
 {#if detailPage4}
@@ -607,4 +612,6 @@ async function getTactic(){
 </div>
 {/if}
 {/if}
+{/if}
+
 {/await}
