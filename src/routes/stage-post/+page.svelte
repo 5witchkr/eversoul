@@ -45,6 +45,7 @@ async function createPost() {
         let requestPosition;
         let requestPower;
         let requestInfo="";
+        let requestTitle="";
         let requestSoulsWithLevel = [];
 
 
@@ -91,7 +92,7 @@ async function createPost() {
     <div class="form-control w-300 max-w-xs">
         <h1>공략 작성 페이지입니다.</h1>
         <label class="label">
-          <span class="label-text">지역 선택란</span>
+          <span class="label-text">지역 선택란 (필수)</span>
           <span class="label-text-alt">Location</span>
         </label>
         <select class="select select-bordered" bind:value={requestLocation}>
@@ -106,7 +107,7 @@ async function createPost() {
 
       <div class="form-control w-full max-w-xs">
         <label class="label">
-          <span class="label-text">단계 선택란</span>
+          <span class="label-text">단계 선택란 (필수)</span>
           <span class="label-text-alt">Step</span>
         </label>
         <select class="select select-bordered"  bind:value={requestStep}>
@@ -117,11 +118,17 @@ async function createPost() {
         </select>
       </div>
 
-      <div class="divider divider-horizontal"> </div>
+      <label class="label">
+        <span class="label-text">공략 제목(필수)</span>
+        <span class="label-text-alt">Title</span>
+      </label>
+      <input bind:value={requestTitle} placeholder="Input Title" class="input input-bordered w-full max-w-xs" />
 
+      <div class="divider divider-horizontal"> </div>
+      
       <div class="form-control w-full max-w-xs">
         <label class="label">
-          <span class="label-text">포지션 선택란</span>
+          <span class="label-text">포지션 선택란 (필수)</span>
           <span class="label-text-alt">Position</span>
         </label>
         <select class="select select-bordered"  bind:value={requestPosition}>
@@ -143,7 +150,7 @@ async function createPost() {
   
       </div>
       <label class="label">
-        <span class="label-text">정령 선택란</span>
+        <span class="label-text">정령 선택란 (필수 5개)</span>
         <span class="label-text-alt">Soul</span>
       </label>
       <div class="form-control">
