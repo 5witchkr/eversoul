@@ -1,5 +1,5 @@
 <script>
-      let apidomain = `https://pickban.duckdns.org`;
+      let apidomain = `https://eversoul.duckdns.org`;
 
     let soulCharacters = ['아드리안','캐서린', '탈리아','재클린',
      '페트라', '비올레트','지호','메피', '비비안', '린지',

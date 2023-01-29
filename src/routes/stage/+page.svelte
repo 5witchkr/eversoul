@@ -1,5 +1,5 @@
 <script>
-  let apidomain = `https://pickban.duckdns.org`;
+  let apidomain = `https://eversoul.duckdns.org`;
 
     //api call values
     let requestLocations;

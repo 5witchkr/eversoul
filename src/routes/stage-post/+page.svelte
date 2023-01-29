@@ -1,5 +1,5 @@
 <script>
-  let apidomain = `https://pickban.duckdns.org`;
+  let apidomain = `https://eversoul.duckdns.org`;
 
 async function createPost() {
 		const res = await fetch(`${apidomain}/api/stagetactic/tactic`, {
@@ -125,7 +125,7 @@ async function createPost() {
       <input bind:value={requestTitle} placeholder="Input Title" class="input input-bordered w-full max-w-xs" />
 
       <div class="divider divider-horizontal"> </div>
-      
+
       <div class="form-control w-full max-w-xs">
         <label class="label">
           <span class="label-text">포지션 선택란 (필수)</span>
