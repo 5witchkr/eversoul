@@ -68,7 +68,7 @@ async function getTactic(){
         if (postStatus == 201) {    
             contents = "";
             callDetailPage();
-            alert("이 공략을 추천했습니다. (하루에 한번만 가능)")
+            alert("이 공략을 추천했습니다. (하루에 한번만 가능합니다)")
     }
 	}
 
