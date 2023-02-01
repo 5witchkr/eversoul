@@ -1,5 +1,5 @@
 <script>
-  let apidomain = `https://eversoul.duckdns.org`;
+  let apidomain = `https://api.eversoul.site`;
 
     //api call values
     let requestLocations;
@@ -89,7 +89,7 @@ async function getTactic(){
         "다이난 호수", "하얀 울새 숲", "베르트 산맥",
         "비노 협곡", "렉타 황무지", "쿠르 사바나", 
         "아르코 이리스","모레노 사막","라피아 정글",
-        "반딧불이의 둥지","나델 고산지","그림자 없는 땅"
+        "반딧불이의 둥지","나델 고산지","그림자 없는 땅","유령도시 모르투스"
         ]; // 반복 출력할 배열
     let steps = [
         1,2,3,4,5,6,7,8,9,10,

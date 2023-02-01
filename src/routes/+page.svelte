@@ -29,25 +29,35 @@
       </a>
     </div>
 
-    <div class="divider"></div> 
+    <div class="divider"></div>  
 
-      <div class=" ">
-        <h1 class="text-3xl font-bold">정령 티어표</h1>
-        <p class="py-6">최신 정령들의 성능 티어를 확인해보세요.</p>
-        <a href="/tier">
-          <button class="btn btn-info">바로가기</button>
-      </a>
-    </div>
+    <div class="max-w-md ">
+      <h1 class="text-3xl font-bold">인연스토리 공략</h1>
+      <p class="py-6">정령들의 인연스토리 공략입니다.</p>
+      <a href="/story">
+        <button class="btn btn-error">바로가기</button>
+    </a>
+  </div>
 
-    <div class="divider"></div> 
+  <div class="divider"></div>
 
-      <div class="max-w-md ">
-        <h1 class="text-3xl font-bold">인연스토리 공략</h1>
-        <p class="py-6">정령들의 인연스토리 공략입니다.</p>
-        <a href="/story">
-          <button class="btn btn-error">바로가기</button>
-      </a>
-    </div>
+  <div class="max-w-md ">
+    <h1 class="text-3xl font-bold">정령 데이터 통계</h1>
+    <p class="py-6">공략 데이터 기반 여러가지 통계정보를 만나보세요</p>
+    <a href="/stat">
+      <button class="btn btn-accent">바로가기</button>
+  </a>
+</div>
+
+    <div class="divider"></div>
+
+    <div class=" ">
+      <h1 class="text-3xl font-bold">정령 티어표</h1>
+      <p class="py-6">최신 정령들의 성능 티어를 확인해보세요.</p>
+      <a href="/tier">
+        <button class="btn btn-info">바로가기</button>
+    </a>
+  </div>
 
     </div>
   </div>

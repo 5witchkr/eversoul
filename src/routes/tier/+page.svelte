@@ -1,5 +1,5 @@
 <script>
-      let apidomain = `https://eversoul.duckdns.org`;
+  let apidomain = `https://api.eversoul.site`;
     async function getSSS(){
         // 원격지 데이터를 fetch로 가져오기
         const res = await fetch(`${apidomain}/api/soulcharacter/tier?tier=SSS`); 
@@ -45,6 +45,15 @@
     let BtierSouls = getB(); 
     getB();
 
+    async function getC(){
+        // 원격지 데이터를 fetch로 가져오기
+        const res = await fetch(`${apidomain}/api/soulcharacter/tier?tier=C`); 
+        const json = await res.json(); // fetch 결과를 JSON 객체로 변환
+        return json;                   // JSON 객체 반환
+    }
+    let CtierSouls = getC(); 
+    getC();
+
     
 
     // mockdata for indexsing soulname
@@ -52,7 +61,7 @@
      'petra', 'violette','jiho','mephistopeles', 'vivienne', 'linzy',
       'naiah', 'claire', 'chloe','dora', 'miriam', 'prim', 'cherrie',
        'mica','seeha','rebecca', 'clara', 'haru', 'flynn', 'nini',
-        'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade'];
+        'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade','velanna'];
 
 
 </script>
@@ -73,6 +82,7 @@
         <div class="badge badge-warning">S티어</div>
         <div class="badge badge-primary">A티어</div>
         <div class="badge badge-info">B티어</div>
+        <div class="badge badge-base-100">C티어</div>
     </div>
   </div>
 <div class="divider"></div> 
@@ -129,6 +139,18 @@
 {#each souls as value}  <!-- 반복 횟수 변수 idx 선언 -->
 <div class="avatar indicator">
     <span class="indicator-item badge badge-info">{value.name}</span> 
+    <div class="w-20 h-20 rounded-lg">
+        <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[value.id]}/img-thumb.png">
+    </div>
+  </div>
+{/each}
+{/await}
+<div class="divider"></div> 
+{#await CtierSouls}
+{:then souls} <!-- 정상 종료 후 처리 -->
+{#each souls as value}  <!-- 반복 횟수 변수 idx 선언 -->
+<div class="avatar indicator">
+    <span class="indicator-item badge badge-base-100">{value.name}</span> 
     <div class="w-20 h-20 rounded-lg">
         <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[value.id]}/img-thumb.png">
     </div>

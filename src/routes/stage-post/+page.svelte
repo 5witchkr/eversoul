@@ -1,5 +1,5 @@
 <script>
-  let apidomain = `https://eversoul.duckdns.org`;
+  let apidomain = `https://api.eversoul.site`;
 
 async function createPost() {
 		const res = await fetch(`${apidomain}/api/stagetactic/tactic`, {
@@ -30,7 +30,7 @@ async function createPost() {
         "다이난 호수", "하얀 울새 숲", "베르트 산맥",
         "비노 협곡", "렉타 황무지", "쿠르 사바나", 
         "아르코 이리스","모레노 사막","라피아 정글",
-        "반딧불이의 둥지","나델 고산지","그림자 없는 땅"
+        "반딧불이의 둥지","나델 고산지","그림자 없는 땅","유령도시 모르투스"
         ]; // 반복 출력할 배열
     let steps = [
         1,2,3,4,5,6,7,8,9,10,
@@ -54,7 +54,7 @@ async function createPost() {
      '페트라', '비올레트','지호','메피', '비비안', '린지',
       '나이아', '클레르', '클로이','도라', '미리암', '프림', '셰리',
        '미카','시하','레베카', '클라라', '하루', '플린', '니니',
-        '에루샤','아야메', '순이', '아이라', '르네', '니콜','제이드'];
+        '에루샤','아야메', '순이', '아이라', '르네', '니콜','제이드','벨라나'];
 
         let selectedSoul = '';
         let selectedSouls ='';
