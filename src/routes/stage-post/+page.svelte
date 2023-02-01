@@ -1,5 +1,5 @@
 <script>
-  let apidomain = `https://eversoul.duckdns.org`;
+  let apidomain = `https://api.eversoul.site`;
 
 async function createPost() {
 		const res = await fetch(`${apidomain}/api/stagetactic/tactic`, {
@@ -54,7 +54,7 @@ async function createPost() {
      '페트라', '비올레트','지호','메피', '비비안', '린지',
       '나이아', '클레르', '클로이','도라', '미리암', '프림', '셰리',
        '미카','시하','레베카', '클라라', '하루', '플린', '니니',
-        '에루샤','아야메', '순이', '아이라', '르네', '니콜','제이드'];
+        '에루샤','아야메', '순이', '아이라', '르네', '니콜','제이드','벨라나'];
 
         let selectedSoul = '';
         let selectedSouls ='';

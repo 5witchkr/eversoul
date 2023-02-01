@@ -1,5 +1,5 @@
 <script>
-      let apidomain = `https://eversoul.duckdns.org`;
+  let apidomain = `https://api.eversoul.site`;
     async function getSSS(){
         // 원격지 데이터를 fetch로 가져오기
         const res = await fetch(`${apidomain}/api/soulcharacter/tier?tier=SSS`); 
@@ -61,7 +61,7 @@
      'petra', 'violette','jiho','mephistopeles', 'vivienne', 'linzy',
       'naiah', 'claire', 'chloe','dora', 'miriam', 'prim', 'cherrie',
        'mica','seeha','rebecca', 'clara', 'haru', 'flynn', 'nini',
-        'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade'];
+        'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade','velanna'];
 
 
 </script>

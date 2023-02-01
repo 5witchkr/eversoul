@@ -1,21 +1,21 @@
 <script>
-      let apidomain = `https://eversoul.duckdns.org`;
+  let apidomain = `https://api.eversoul.site`;
 
     let soulCharacters = ['아드리안','캐서린', '탈리아','재클린',
      '페트라', '비올레트','지호','메피', '비비안', '린지',
       '나이아', '클레르', '클로이','도라', '미리암', '프림', '셰리',
        '미카','시하','레베카', '클라라', '하루', '플린', '니니',
-        '에루샤','아야메', '순이', '아이라', '르네', '니콜','제이드'];
+        '에루샤','아야메', '순이', '아이라', '르네', '니콜','제이드','벨라나'];
     
     // mockdata for indexsing soulname
     let soulIndex = ['adrianne','catherine', 'talia','jacqueline',
      'petra', 'violette','jiho','mephistopeles', 'vivienne', 'linzy',
       'naiah', 'claire', 'chloe','dora', 'miriam', 'prim', 'cherrie',
        'mica','seeha','rebecca', 'clara', 'haru', 'flynn', 'nini',
-        'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade'];
+        'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade','velanna'];
 
 
-        let episodes = ['모든 에피소드', '개별 에피소드는 준비중입니다'];
+        let episodes = ['모든 에피소드', '개별 에피소드(데이터준비중)'];
 
     let soulValue;
     let episodeValue;
