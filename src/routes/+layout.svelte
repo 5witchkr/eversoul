@@ -15,6 +15,9 @@
       <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
         <li><a href="/stage">스테이지 공략</a></li>
         <li><a href="/story">인연스토리 공략</a></li>
+        <li><a href="/tier">정령 티어표</a></li>
+        <li><a href="/stat">데이터 통계 <div class="badge badge-error">NEW</div></a></li>
+        <li><a href="/rank">명예의 전당 <div class="badge badge-error">NEW</div></a></li>
         <li><label for="my-modal2">문의사항 접수</label></li>
       </ul>
     </div>
@@ -25,7 +28,7 @@
   <div class="navbar-end">
     <div class="flex-none">
       <ul class="menu menu-horizontal px-1">
-        <li><a href="/tier">정령 티어표</a></li>
+        <li><a href="/stage">전선 공략</a></li>
       </ul>
     </div>
   </div>
@@ -45,3 +48,4 @@
 </div>
 
 <slot></slot>
+
