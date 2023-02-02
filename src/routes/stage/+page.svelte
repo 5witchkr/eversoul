@@ -83,6 +83,41 @@ async function getTactic(){
       'naiah', 'claire', 'chloe','dora', 'miriam', 'prim', 'cherrie',
        'mica','seeha','rebecca', 'clara', 'haru', 'flynn', 'nini',
         'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade'];
+        let soulImgIndex = [ 
+      '',
+      "https://eversoul.kakaogames.com/static/character/adrianne/img-thumb.png" ,
+    "https://eversoul.kakaogames.com/static/character/catherine/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/talia/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/jacqueline/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/petra/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/violette/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/jiho/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/mephistopeles/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/vivienne/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/linzy/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/naiah/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/claire/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/chloe/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/dora/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/miriam/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/prim/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/cherrie/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/mica/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/seeha/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/rebecca/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/clara/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/haru/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/flynn/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/nini/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/erusha/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/ayame/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/soonie/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/aira/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/renee/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/nicole/img-thumb.png" ,
+    "https://eversoul.kakaogames.com/static/character/jade/img-thumb.png",
+        "https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1675242432192_51.png"
+      ];
 
     let locations = [
         "엘나스", "아케나인", "콜브 초원",
@@ -263,21 +298,21 @@ async function getTactic(){
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].id]}/img-thumb.png">
+                    <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].id]}>
                 </div>
                 </div>
 
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].id]}>
                 </div>
                 </div>
 
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].id]}>
                 </div>
                 </div>
 
@@ -288,14 +323,14 @@ async function getTactic(){
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].id]}>
                 </div>
                 </div>
 
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].id]}>
                 </div>
                 </div>
               </div>
@@ -364,14 +399,14 @@ async function getTactic(){
               <div class="avatar indicator">
                   <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].id]}/img-thumb.png">
+                <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].id]}>
               </div>
               </div>
 
               <div class="avatar indicator">
                   <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].id]}/img-thumb.png">
+                <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].id]}>
               </div>
               </div>
             </div>
@@ -382,21 +417,21 @@ async function getTactic(){
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].id]}>
                 </div>
                 </div>
 
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].id]}>
                 </div>
                 </div>
 
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].id]}>
                 </div>
                 </div>
 
@@ -466,7 +501,7 @@ async function getTactic(){
               <div class="avatar indicator">
                   <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].id]}/img-thumb.png">
+                <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].id]}>
               </div>
               </div>
             </div>
@@ -477,27 +512,27 @@ async function getTactic(){
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].id]}>
                 </div>
                 </div>
 
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].id]}>
                 </div>
                 </div>
 
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].id]}>
                 </div>
                 </div>
                 <div class="avatar indicator">
                   <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].id]}/img-thumb.png">
+                <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].id]}>
               </div>
               </div>
             </div>
@@ -566,27 +601,27 @@ async function getTactic(){
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[1].id]}>
                 </div>
                 </div>
 
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[2].id]}>
                 </div>
                 </div>
 
                 <div class="avatar indicator">
                     <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].level}</span> 
                 <div class="w-20 h-20 rounded-lg">
-                    <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].id]}/img-thumb.png">
+                  <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[3].id]}>
                 </div>
                 </div>
                 <div class="avatar indicator">
                   <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].id]}/img-thumb.png">
+                <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[4].id]}>
               </div>
               </div>
             </div>
@@ -597,7 +632,7 @@ async function getTactic(){
               <div class="avatar indicator">
                   <span class="indicator-item badge badge-neutral-focus">LV.{valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].level}</span> 
               <div class="w-20 h-20 rounded-lg">
-                  <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].id]}/img-thumb.png">
+                <img src={soulImgIndex[valueeee[tacticIndex].soulCharacterTacticResponseDtos[0].id]}>
               </div>
               </div>
           

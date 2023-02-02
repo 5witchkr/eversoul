@@ -31,3 +31,6 @@
 <img alt="아야메" src="https://eversoul.kakaogames.com/static/character/ayame/img-thumb.png" class="loaded"> -->
 
 <!-- <img alt="쌍둥이신캐일러스트" src="https://eversoul.kakaogames.com/images/media/wallpaper/img-detail7.jpg" class="loaded"> -->
+
+
+<!-- const bellana = "https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1675242432192_51.png" -->

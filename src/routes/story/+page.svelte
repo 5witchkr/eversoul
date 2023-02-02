@@ -14,6 +14,42 @@
        'mica','seeha','rebecca', 'clara', 'haru', 'flynn', 'nini',
         'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade','velanna'];
 
+        // mockdata for indexsing soulname
+        let soulImgIndex = [ 
+      "https://eversoul.kakaogames.com/static/character/adrianne/img-thumb.png" ,
+    "https://eversoul.kakaogames.com/static/character/catherine/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/talia/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/jacqueline/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/petra/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/violette/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/jiho/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/mephistopeles/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/vivienne/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/linzy/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/naiah/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/claire/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/chloe/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/dora/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/miriam/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/prim/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/cherrie/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/mica/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/seeha/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/rebecca/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/clara/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/haru/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/flynn/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/nini/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/erusha/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/ayame/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/soonie/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/aira/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/renee/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/nicole/img-thumb.png" ,
+    "https://eversoul.kakaogames.com/static/character/jade/img-thumb.png",
+        "https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1675242432192_51.png"
+      ];
+
 
         let episodes = ['모든 에피소드', '개별 에피소드(데이터준비중)'];
 
@@ -58,7 +94,7 @@
         <div class="avatar" style="justify-content: center;">
             <div class="w-24 mask mask-hexagon">
                 {#if soulValue != "Pick Character"}
-                <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[soulCharacters.indexOf(soulValue)]}/img-thumb.png" />
+                <img src={soulImgIndex[soulCharacters.indexOf(soulValue)]}/>
                 {/if}
             </div>
           </div>
@@ -113,7 +149,7 @@
         <div class="avatar" style="justify-content: center;">
             <div class="w-24 mask mask-hexagon">
                 {#if soulValue != "Pick Character"}
-                <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[soulCharacters.indexOf(soulValue)]}/img-thumb.png" />
+                <img src={soulImgIndex[soulCharacters.indexOf(soulValue)]}/>
                 {/if}
             </div>
           </div>
@@ -131,7 +167,7 @@
 <div class="chat chat-start">
     <div class="chat-image avatar">
       <div class="w-10 rounded-full" >
-          <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[soulCharacters.indexOf(soulValue)]}/img-thumb.png" />
+        <img src={soulImgIndex[soulCharacters.indexOf(soulValue)]}/>
       </div>
     </div>
     <div class="chat-header">

@@ -8,6 +8,42 @@ let soulCharacters = ['','아드리안','캐서린', '탈리아','재클린',
    '미카','시하','레베카', '클라라', '하루', '플린', '니니',
     '에루샤','아야메', '순이', '아이라', '르네', '니콜','제이드','벨라나'];
 
+
+    let soulImgIndex = [ 
+      '',
+      "https://eversoul.kakaogames.com/static/character/adrianne/img-thumb.png" ,
+    "https://eversoul.kakaogames.com/static/character/catherine/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/talia/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/jacqueline/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/petra/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/violette/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/jiho/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/mephistopeles/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/vivienne/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/linzy/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/naiah/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/claire/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/chloe/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/dora/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/miriam/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/prim/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/cherrie/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/mica/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/seeha/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/rebecca/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/clara/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/haru/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/flynn/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/nini/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/erusha/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/ayame/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/soonie/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/aira/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/renee/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/nicole/img-thumb.png" ,
+    "https://eversoul.kakaogames.com/static/character/jade/img-thumb.png",
+        "https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1675242432192_51.png"
+      ];
 // mockdata for indexsing soulname
 let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
  'petra', 'violette','jiho','mephistopeles', 'vivienne', 'linzy',
@@ -93,7 +129,7 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
                         <div class="avatar indicator">
                             <span class="indicator-item badge badge-neutral">{soulCharacters[value.id]}</span> 
                             <div class="w-20 h-20 rounded-lg">
-                                <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[value.id]}/img-thumb.png" class="loaded">
+                                <img src={soulImgIndex[value.id]} />
                             </div>
                             <div class="tooltip" data-tip="hello">
                                 <button class="btn">{idx+1}위 {value.selectCount}회 출전</button>
@@ -152,7 +188,7 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
         <div >
             <div class="avatar">
                 <div class="w-24 mask mask-hexagon">
-                    <img alt="" src="https://eversoul.kakaogames.com/static/character/{soulIndex[onesoulstats.id]}/img-thumb.png" class="loaded">
+                    <img src={soulImgIndex[onesoulstats.id]} />
                 </div>
                 <ul class="menu bg-base-100 w-56">
                     <li><a><div class="badge">{soulCharacters[onesoulstats.id]}</div></a></li>

@@ -57,12 +57,41 @@
     
 
     // mockdata for indexsing soulname
-    let soulIndex = [ '','adrianne','catherine', 'talia','jacqueline',
-     'petra', 'violette','jiho','mephistopeles', 'vivienne', 'linzy',
-      'naiah', 'claire', 'chloe','dora', 'miriam', 'prim', 'cherrie',
-       'mica','seeha','rebecca', 'clara', 'haru', 'flynn', 'nini',
-        'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade','velanna'];
-
+    let soulImgIndex = [ 
+      '',
+      "https://eversoul.kakaogames.com/static/character/adrianne/img-thumb.png" ,
+    "https://eversoul.kakaogames.com/static/character/catherine/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/talia/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/jacqueline/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/petra/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/violette/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/jiho/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/mephistopeles/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/vivienne/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/linzy/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/naiah/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/claire/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/chloe/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/dora/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/miriam/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/prim/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/cherrie/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/mica/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/seeha/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/rebecca/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/clara/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/haru/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/flynn/img-thumb.png",
+      "https://eversoul.kakaogames.com/static/character/nini/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/erusha/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/ayame/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/soonie/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/aira/img-thumb.png" ,
+      "https://eversoul.kakaogames.com/static/character/renee/img-thumb.png",
+    "https://eversoul.kakaogames.com/static/character/nicole/img-thumb.png" ,
+    "https://eversoul.kakaogames.com/static/character/jade/img-thumb.png",
+        "https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1675242432192_51.png"
+      ];
 
 </script>
 
@@ -92,7 +121,7 @@
 <div class="avatar indicator">
     <span class="indicator-item badge badge-secondary">{value.name}</span> 
     <div class="w-20 h-20 rounded-lg">
-        <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[value.id]}/img-thumb.png">
+        <img src={soulImgIndex[value.id]}>
     </div>
   </div>
 {/each}
@@ -104,7 +133,7 @@
 <div class="avatar indicator">
     <span class="indicator-item badge badge-error">{value.name}</span> 
     <div class="w-20 h-20 rounded-lg">
-        <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[value.id]}/img-thumb.png">
+        <img src={soulImgIndex[value.id]}>
     </div>
   </div>
 {/each}
@@ -116,7 +145,7 @@
 <div class="avatar indicator">
     <span class="indicator-item badge badge-warning">{value.name}</span> 
     <div class="w-20 h-20 rounded-lg">
-        <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[value.id]}/img-thumb.png">
+      <img src={soulImgIndex[value.id]}>
     </div>
   </div>
 {/each}
@@ -128,7 +157,7 @@
 <div class="avatar indicator">
     <span class="indicator-item badge badge-primary">{value.name}</span> 
     <div class="w-20 h-20 rounded-lg">
-        <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[value.id]}/img-thumb.png">
+      <img src={soulImgIndex[value.id]}>
     </div>
   </div>
 {/each}
@@ -140,7 +169,7 @@
 <div class="avatar indicator">
     <span class="indicator-item badge badge-info">{value.name}</span> 
     <div class="w-20 h-20 rounded-lg">
-        <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[value.id]}/img-thumb.png">
+      <img src={soulImgIndex[value.id]}>
     </div>
   </div>
 {/each}
@@ -152,7 +181,7 @@
 <div class="avatar indicator">
     <span class="indicator-item badge badge-base-100">{value.name}</span> 
     <div class="w-20 h-20 rounded-lg">
-        <img src="https://eversoul.kakaogames.com/static/character/{soulIndex[value.id]}/img-thumb.png">
+      <img src={soulImgIndex[value.id]}>
     </div>
   </div>
 {/each}
