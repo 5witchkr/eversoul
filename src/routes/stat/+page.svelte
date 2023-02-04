@@ -61,13 +61,13 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
     }
 
     async function getTopSoulSelectStat(){
-        const res = await fetch(`${apidomain}/api/stat/soulselect?argNumber=5?rating=top`);
+        const res = await fetch(`${apidomain}/api/stat/soulselect?argNumber=5&rating=top`);
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json; 
     }
 
     async function getBottomSoulSelectStat(){
-        const res = await fetch(`${apidomain}/api/stat/soulselect?argNumber=5?rating=bottom`);
+        const res = await fetch(`${apidomain}/api/stat/soulselect?argNumber=5&rating=bottom`);
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json; 
     }
