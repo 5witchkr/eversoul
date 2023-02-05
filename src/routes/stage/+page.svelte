@@ -269,11 +269,11 @@ async function getTactic(){
     <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
     <h3 class="text-lg font-bold">원하는 공략을 고르세요</h3>
     <a>(등록된 공략이 없을경우에는 보이지 않습니다).</a>
-    <ul class="menu bg-base-100 w-80 p-2 rounded-box">
+    <ul class="menu bg-base-100 w-100 p-2 rounded-box">
       {#await tacticsCall}
       {:then tactics} <!-- 정상 종료 후 처리 -->
       {#each tactics as valueeee ,idx} 
-      <li><button class="btn" on:click={ viewRecommendClick(valueeee, idx)}>추천도:{valueeee.recommendCount} {valueeee.title}({valueeee.power})</button></li>
+      <li><button style="margin: 3px;" on:click={ viewRecommendClick(valueeee, idx)}>추천도:{valueeee.recommendCount} {valueeee.title}({valueeee.power})</button></li>
       {/each}
       {/await}
     </ul>

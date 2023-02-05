@@ -39,12 +39,12 @@ async function createPost() {
         31,32,33,34,35,36,37,38,39,40,
         41,42,43,44,45];
     let positions = [
-        "기본","수비","돌격","저격"
+        "기본 (2+3)","수비 (3+2)","돌격 (4+1)","저격 (1+4)"
     ]
         let requestLocation;
         let requestStep;
         let requestPosition;
-        let requestPower;
+        let requestPower=1;
         let requestInfo="";
         let requestTitle="";
         let requestSoulsWithLevel = [];
@@ -61,11 +61,13 @@ async function createPost() {
         let inputSoulLevel =0;
         let inputSoulName ='';
         let maxSoulsValue = 0;
+        let soulOrderStates = 0;
 
         function resetSelectClick() {
             selectedSouls = '';
             selectedSoul = ''
             maxSoulsValue = 0;
+            soulOrderStates = 0;
             requestSoulsWithLevel=[]
             }
         function addSoulClick(){
@@ -75,8 +77,9 @@ async function createPost() {
             if (inputSoulLevel < 1 || inputSoulName=='') {
                 return alert("레벨과 정령이름을 전부 입력해주세요.");
             }
-            selectedSouls += "Lv"+inputSoulLevel;
-            selectedSouls += inputSoulName+" ";
+            soulOrderStates++;
+            selectedSouls += `<li><a>`+"선택"+soulOrderStates+": "+"LV"+inputSoulLevel + " ";
+            selectedSouls += inputSoulName+`</a></li>`;
             requestSoulsWithLevel.push({"soulId": soulcharacters.indexOf(inputSoulName)+1, "level": inputSoulLevel})
             maxSoulsValue += 1;
         }
@@ -144,7 +147,7 @@ async function createPost() {
 
       <div class="form-control w-full max-w-xs">
         <label class="label">
-          <span class="label-text">전투력 입력란</span>
+          <span class="label-text">전투력 입력란 (선택)</span>
           <span class="label-text-alt">Power</span>
         </label>
         <input bind:value={requestPower} type="number" placeholder="숫자로만 입력해주세요!" class="input input-bordered w-full max-w-xs" />
@@ -174,9 +177,9 @@ async function createPost() {
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
       </label>
-      <textarea class="textarea textarea-bordered" placeholder="Bio" readonly> {selectedSouls}</textarea>
-
-
+      <ul class="menu menu-compact bg-base-100 w-56 p-2 rounded-box">
+        {@html selectedSouls}
+      </ul>
       <div class="divider"></div>
       <textarea bind:value={requestInfo} class="textarea textarea-bordered" placeholder="어떤 전략을 사용했나요?"></textarea>
       <div class="divider"></div>
