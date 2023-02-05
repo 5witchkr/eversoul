@@ -72,6 +72,21 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
         return json; 
     }
 
+    async function getSoulConnect(){
+        const res = await fetch(`${apidomain}/api/stat/soulconnect?argNumber=5`);
+        const json = await res.json(); // fetch 결과를 JSON 객체로 변환
+        return json; 
+    }
+
+    async function getOneSoulConnect(){
+      if(typeof soulNameValue == "" || soulNameValue=="" || typeof soulNameValue == "undefined"){
+            return;
+        }
+        const res = await fetch(`${apidomain}/api/stat/soulconnect/${soulCharacters.indexOf(soulNameValue)}`);
+        const json = await res.json(); // fetch 결과를 JSON 객체로 변환
+        return json; 
+    }
+
 
     let clickOneStat = false;
     let soulNameValue = "";
@@ -88,9 +103,11 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
     }
     
 
+    let oneSoulConnectCall = getOneSoulConnect();
     let oneSoulSelectCall = getOneSoulSelectStat();
     let topSoulSelectCall = getTopSoulSelectStat();
     let bottomSoulSelectCall = getBottomSoulSelectStat();
+    let soulConnectCall = getSoulConnect();
     let positionStatCall = getPositionStat();
     
 
@@ -206,13 +223,52 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
   </div>
 
   <div class="divider"></div> 
-
   
+
+  <div class="collapse">
+    <input type="checkbox" class="peer" /> 
+    <div class="collapse-title bg-pink-900 text-primary-content peer-checked:bg-pink-900 peer-checked:text-secondary-content">
+        🥂 함께 사용된 정령 TOP5
+    </div>
+    <div class="collapse-content bg-pink-900 text-primary-content peer-checked:bg-pink-900 peer-checked:text-secondary-content">
+        <div class="flex flex-col w-300">
+            <div class="form-control w-300 max-w-xs">
+                
+                    <div class="divider"></div> 
+
+                    {#await soulConnectCall}
+                    {:then values} 
+                    {#each values as value}
+                    <div style="text-align: center;">
+                        <div class="avatar indicator">
+                            <div class="w-20 h-20 rounded-lg">
+                                <img src={soulImgIndex[value.connectSoul]} />
+                            </div>
+                            <div class="w-20 h-20 rounded-lg">
+                              <img src={soulImgIndex[value.connectedSoul]} />
+                          </div>
+                            <div class="tooltip" data-tip="hello">
+                                <button class="btn"> {value.connectCount}번 함께 출전</button>
+                              </div>
+                          </div>
+                    </div>
+                    {/each}
+                    {/await}
+
+        </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="divider"></div> 
 
   <div class="form-control">
     <div class="input-group">
       <input type="text" placeholder="정령 검색하기" class="input input-bordered" bind:value={soulNameValue}/>
-      <button class="btn btn-square" on:click={() => oneSoulSelectCall = getOneSoulSelectStat()}>
+      <button class="btn btn-square" on:click={() => {
+        oneSoulConnectCall = getOneSoulConnect();
+        oneSoulSelectCall = getOneSoulSelectStat();
+        }}>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
       </button>
     </div>
@@ -238,6 +294,14 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
                   </ul>
               </div>
         </div>
+        🥂 함께 사용된 정령
+        {/await}
+        {#await oneSoulConnectCall}
+        {:then onesoulstats}
+        {#each onesoulstats as value}
+        <span class="badge" style="margin-top: 5px;">{soulCharacters[value.connectSoul]} & {soulCharacters[value.connectedSoul]} - {value.connectCount}번</span>
+        <progress class="progress progress-error w-56" value="{value.connectCount}" max="100"></progress>
+      {/each}
         {/await}
     </div>
     </div>
