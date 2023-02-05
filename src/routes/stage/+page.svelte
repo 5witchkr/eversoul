@@ -269,11 +269,11 @@ async function getTactic(){
     <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
     <h3 class="text-lg font-bold">원하는 공략을 고르세요</h3>
     <a>(등록된 공략이 없을경우에는 보이지 않습니다).</a>
-    <ul class="menu bg-base-100 w-80 p-2 rounded-box">
+    <ul class="menu bg-base-100 w-100 p-2 rounded-box">
       {#await tacticsCall}
       {:then tactics} <!-- 정상 종료 후 처리 -->
       {#each tactics as valueeee ,idx} 
-      <li><button class="btn" on:click={ viewRecommendClick(valueeee, idx)}>추천도:{valueeee.recommendCount} {valueeee.title}({valueeee.power})</button></li>
+      <li><button style="margin: 3px;" on:click={ viewRecommendClick(valueeee, idx)}>추천도:{valueeee.recommendCount} {valueeee.title}({valueeee.power})</button></li>
       {/each}
       {/await}
     </ul>
@@ -338,13 +338,13 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>제목: {valueeee[tacticIndex].title}</p>
-          <p>포지션: {valueeee[tacticIndex].position}</p>
-          <p>전투력: {valueeee[tacticIndex].power}</p>
-          <a style="max-width: 35vh;">
-            정보: {valueeee[tacticIndex].info}</a>
+          <p style="margin: 1px;">제목: {valueeee[tacticIndex].title}</p>
+          <p style="margin: 1px;">포지션: {valueeee[tacticIndex].position}</p>
+          <p style="margin: 1px;">전투력: {valueeee[tacticIndex].power}</p>
+          <p style="max-width: 35vh; margin: 3px;">
+            정보: {valueeee[tacticIndex].info}</p>
             <div class="rating gap-1" >
-              <a>추천하기</a>
+              <a style="margin: 3px;">추천하기</a>
               <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
             </div>
       <div class="divider"></div>
@@ -439,13 +439,13 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>제목: {valueeee[tacticIndex].title}</p>
-          <p>포지션: {valueeee[tacticIndex].position}</p>
-          <p>전투력: {valueeee[tacticIndex].power}</p>
-          <a style="max-width: 35vh;">
-            정보: {valueeee[tacticIndex].info}</a>
+          <p style="margin: 1px;">제목: {valueeee[tacticIndex].title}</p>
+          <p style="margin: 1px;">포지션: {valueeee[tacticIndex].position}</p>
+          <p style="margin: 1px;">전투력: {valueeee[tacticIndex].power}</p>
+          <p style="max-width: 35vh; margin: 3px;">
+            정보: {valueeee[tacticIndex].info}</p>
             <div class="rating gap-1" >
-              <a>추천하기</a>
+              <a style="margin: 3px;">추천하기</a>
               <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
             </div>
       <div class="divider"></div>
@@ -539,13 +539,13 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>제목: {valueeee[tacticIndex].title}</p>
-          <p>포지션: {valueeee[tacticIndex].position}</p>
-          <p>전투력: {valueeee[tacticIndex].power}</p>
-          <a style="max-width: 35vh;">
-            정보: {valueeee[tacticIndex].info}</a>
+          <p style="margin: 1px;">제목: {valueeee[tacticIndex].title}</p>
+          <p style="margin: 1px;">포지션: {valueeee[tacticIndex].position}</p>
+          <p style="margin: 1px;">전투력: {valueeee[tacticIndex].power}</p>
+          <p style="max-width: 35vh; margin: 3px;">
+            정보: {valueeee[tacticIndex].info}</p>
             <div class="rating gap-1" >
-              <a>추천하기</a>
+              <a style="margin: 3px;">추천하기</a>
               <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
             </div>
       <div class="divider"></div>
@@ -641,13 +641,13 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>제목: {valueeee[tacticIndex].title}</p>
-          <p>포지션: {valueeee[tacticIndex].position}</p>
-          <p>전투력: {valueeee[tacticIndex].power}</p>
-          <a style="max-width: 35vh;">
-            정보: {valueeee[tacticIndex].info}</a>
+          <p style="margin: 1px;">제목: {valueeee[tacticIndex].title}</p>
+          <p style="margin: 1px;">포지션: {valueeee[tacticIndex].position}</p>
+          <p style="margin: 1px;">전투력: {valueeee[tacticIndex].power}</p>
+          <p style="max-width: 35vh; margin: 3px;">
+            정보: {valueeee[tacticIndex].info}</p>
             <div class="rating gap-1" >
-              <a>추천하기</a>
+              <a style="margin: 3px;">추천하기</a>
               <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
             </div>
       <div class="divider"></div>
