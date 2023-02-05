@@ -167,7 +167,7 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
 
                     {#await bottomSoulSelectCall}
                     {:then values} 
-                    {#each values as value, idx}
+                    {#each values as value}
                     <div style="text-align: center;">
                         <div class="avatar indicator">
                             <span class="indicator-item badge badge-neutral">{soulCharacters[value.id]}</span> 
@@ -175,13 +175,12 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
                                 <img src={soulImgIndex[value.id]} />
                             </div>
                             <div class="tooltip" data-tip="hello">
-                                <button class="btn">뒤에서 {idx+1}위 {value.selectCount}회 출전</button>
+                                <button class="btn"> {value.selectCount}회 출전</button>
                               </div>
                           </div>
                     </div>
                     {/each}
                     {/await}
-
 
         </div>
         </div>
