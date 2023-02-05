@@ -61,7 +61,13 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
     }
 
     async function getTopSoulSelectStat(){
-        const res = await fetch(`${apidomain}/api/stat/soulselect?argNumber=5`);
+        const res = await fetch(`${apidomain}/api/stat/soulselect?argNumber=5&rating=top`);
+        const json = await res.json(); // fetch 결과를 JSON 객체로 변환
+        return json; 
+    }
+
+    async function getBottomSoulSelectStat(){
+        const res = await fetch(`${apidomain}/api/stat/soulselect?argNumber=5&rating=bottom`);
         const json = await res.json(); // fetch 결과를 JSON 객체로 변환
         return json; 
     }
@@ -84,6 +90,7 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
 
     let oneSoulSelectCall = getOneSoulSelectStat();
     let topSoulSelectCall = getTopSoulSelectStat();
+    let bottomSoulSelectCall = getBottomSoulSelectStat();
     let positionStatCall = getPositionStat();
     
 
@@ -114,7 +121,7 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
 <div class="collapse">
     <input type="checkbox" class="peer" /> 
     <div class="collapse-title bg-info-content text-primary-content peer-checked:bg-info-content peer-checked:text-secondary-content">
-        📈 가장 많이 사용한 정령
+        📈 가장 많이 사용된 정령
     </div>
     <div class="collapse-content bg-info-content text-primary-content peer-checked:bg-info-content peer-checked:text-secondary-content">
         <div class="flex flex-col w-300">
@@ -147,6 +154,40 @@ let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
 
   <div class="divider"></div> 
 
+  <div class="collapse">
+    <input type="checkbox" class="peer" /> 
+    <div class="collapse-title bg-orange-900 text-primary-content peer-checked:bg-orange-900 peer-checked:text-secondary-content">
+        📉 가장 적게 사용된 정령
+    </div>
+    <div class="collapse-content bg-orange-900 text-primary-content peer-checked:bg-orange-900 peer-checked:text-secondary-content">
+        <div class="flex flex-col w-300">
+            <div class="form-control w-300 max-w-xs">
+                
+                    <div class="divider"></div> 
+
+                    {#await bottomSoulSelectCall}
+                    {:then values} 
+                    {#each values as value}
+                    <div style="text-align: center;">
+                        <div class="avatar indicator">
+                            <span class="indicator-item badge badge-neutral">{soulCharacters[value.id]}</span> 
+                            <div class="w-20 h-20 rounded-lg">
+                                <img src={soulImgIndex[value.id]} />
+                            </div>
+                            <div class="tooltip" data-tip="hello">
+                                <button class="btn"> {value.selectCount}회 출전</button>
+                              </div>
+                          </div>
+                    </div>
+                    {/each}
+                    {/await}
+
+        </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="divider"></div> 
 
 <div class="collapse">
     <input type="checkbox" class="peer" /> 
