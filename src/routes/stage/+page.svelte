@@ -338,13 +338,13 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>제목: {valueeee[tacticIndex].title}</p>
-          <p>포지션: {valueeee[tacticIndex].position}</p>
-          <p>전투력: {valueeee[tacticIndex].power}</p>
-          <a style="max-width: 35vh;">
-            정보: {valueeee[tacticIndex].info}</a>
+          <p style="margin: 1px;">제목: {valueeee[tacticIndex].title}</p>
+          <p style="margin: 1px;">포지션: {valueeee[tacticIndex].position}</p>
+          <p style="margin: 1px;">전투력: {valueeee[tacticIndex].power}</p>
+          <p style="max-width: 35vh; margin: 3px;">
+            정보: {valueeee[tacticIndex].info}</p>
             <div class="rating gap-1" >
-              <a>추천하기</a>
+              <a style="margin: 3px;">추천하기</a>
               <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
             </div>
       <div class="divider"></div>
@@ -439,14 +439,13 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>제목: {valueeee[tacticIndex].title}</p>
-          <p>포지션: {valueeee[tacticIndex].position}</p>
-          <p>전투력: {valueeee[tacticIndex].power}</p>
-          <textarea style="max-width: 35vh;" class="textarea textarea-bordered"></textarea>
-          <p style="max-width: 35vh;">
+          <p style="margin: 1px;">제목: {valueeee[tacticIndex].title}</p>
+          <p style="margin: 1px;">포지션: {valueeee[tacticIndex].position}</p>
+          <p style="margin: 1px;">전투력: {valueeee[tacticIndex].power}</p>
+          <p style="max-width: 35vh; margin: 3px;">
             정보: {valueeee[tacticIndex].info}</p>
             <div class="rating gap-1" >
-              <a>추천하기</a>
+              <a style="margin: 3px;">추천하기</a>
               <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
             </div>
       <div class="divider"></div>
@@ -540,13 +539,13 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>제목: {valueeee[tacticIndex].title}</p>
-          <p>포지션: {valueeee[tacticIndex].position}</p>
-          <p>전투력: {valueeee[tacticIndex].power}</p>
-          <a style="max-width: 35vh;">
-            정보: {valueeee[tacticIndex].info}</a>
+          <p style="margin: 1px;">제목: {valueeee[tacticIndex].title}</p>
+          <p style="margin: 1px;">포지션: {valueeee[tacticIndex].position}</p>
+          <p style="margin: 1px;">전투력: {valueeee[tacticIndex].power}</p>
+          <p style="max-width: 35vh; margin: 3px;">
+            정보: {valueeee[tacticIndex].info}</p>
             <div class="rating gap-1" >
-              <a>추천하기</a>
+              <a style="margin: 3px;">추천하기</a>
               <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
             </div>
       <div class="divider"></div>
@@ -642,13 +641,13 @@ async function getTactic(){
             </div>
           </div>
           <div class="divider"></div>
-          <p>제목: {valueeee[tacticIndex].title}</p>
-          <p>포지션: {valueeee[tacticIndex].position}</p>
-          <p>전투력: {valueeee[tacticIndex].power}</p>
-          <a style="max-width: 35vh;">
-            정보: {valueeee[tacticIndex].info}</a>
+          <p style="margin: 1px;">제목: {valueeee[tacticIndex].title}</p>
+          <p style="margin: 1px;">포지션: {valueeee[tacticIndex].position}</p>
+          <p style="margin: 1px;">전투력: {valueeee[tacticIndex].power}</p>
+          <p style="max-width: 35vh; margin: 3px;">
+            정보: {valueeee[tacticIndex].info}</p>
             <div class="rating gap-1" >
-              <a>추천하기</a>
+              <a style="margin: 3px;">추천하기</a>
               <input on:click={postRecommend}  type="radio" name="rating-3" class="mask mask-heart bg-red-400" />
             </div>
       <div class="divider"></div>
