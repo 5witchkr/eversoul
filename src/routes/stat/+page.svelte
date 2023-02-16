@@ -6,7 +6,7 @@ let soulCharacters = ['','아드리안','캐서린', '탈리아','재클린',
  '페트라', '비올레트','지호','메피', '비비안', '린지',
   '나이아', '클레르', '클로이','도라', '미리암', '프림', '셰리',
    '미카','시하','레베카', '클라라', '하루', '플린', '니니',
-    '에루샤','아야메', '순이', '아이라', '르네', '니콜','제이드','벨라나'];
+    '에루샤','아야메', '순이', '아이라', '르네', '니콜','제이드','벨라나','홍란'];
 
 
     let soulImgIndex = [ 
@@ -42,14 +42,15 @@ let soulCharacters = ['','아드리안','캐서린', '탈리아','재클린',
       "https://eversoul.kakaogames.com/static/character/renee/img-thumb.png",
     "https://eversoul.kakaogames.com/static/character/nicole/img-thumb.png" ,
     "https://eversoul.kakaogames.com/static/character/jade/img-thumb.png",
-        "https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1675242432192_51.png"
+        "https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1675242432192_51.png",
+        ""
       ];
 // mockdata for indexsing soulname
 let soulIndex = ['','adrianne','catherine', 'talia','jacqueline',
  'petra', 'violette','jiho','mephistopeles', 'vivienne', 'linzy',
   'naiah', 'claire', 'chloe','dora', 'miriam', 'prim', 'cherrie',
    'mica','seeha','rebecca', 'clara', 'haru', 'flynn', 'nini',
-    'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade','velanna'];
+    'erusha','ayame', 'soonie', 'aira', 'renee', 'nicole','jade','velanna','hl'];
 
 
 
