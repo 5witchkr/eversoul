@@ -32,5 +32,5 @@
 
 <!-- <img alt="쌍둥이신캐일러스트" src="https://eversoul.kakaogames.com/images/media/wallpaper/img-detail7.jpg" class="loaded"> -->
 
-
+<!-- honglan = https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1676505210528_4.png -->
 <!-- const bellana = "https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1675242432192_51.png" -->

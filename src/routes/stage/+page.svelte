@@ -117,7 +117,7 @@ async function getTactic(){
     "https://eversoul.kakaogames.com/static/character/nicole/img-thumb.png" ,
     "https://eversoul.kakaogames.com/static/character/jade/img-thumb.png",
         "https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1675242432192_51.png",
-        ""
+        "https://gcdn.pcpf.kakaogames.com/ui-contents/eversoul/characterLists/eversoul_characterLists_1676505210528_4.png"
       ];
 
     let locations = [
